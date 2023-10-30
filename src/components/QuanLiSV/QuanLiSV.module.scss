@@ -1,0 +1,72 @@
+table {
+    width: 100%;
+    margin: 20px 0;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.title {
+    margin: 20px;
+}
+/* Style for table header */
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+/* Style for table rows */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Style for table cells */
+td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+.info-lop {
+    display: flex;
+    justify-content: center;
+}
+/* Style for the "Thêm sinh viên" button */
+.btn-them {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+.btn-chon {
+    width: 100px;
+    padding: 0 10px;
+}
+.btn-them:hover {
+    background-color: #0056b3;
+}
+
+.ds-sinhvien button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.ds-sinhvien button:hover {
+    background-color: #0056b3;
+}
+
+/* Style for the "Xóa" button (different color) */
+.ds-sinhvien button.delete {
+    background-color: #ff0000;
+}
+
+.ds-sinhvien button.delete:hover {
+    background-color: #cc0000;
+}

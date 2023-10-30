@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": "0",
+      "name": "Nguyen Xuan Ngoc",
+      "dob": "20-10-2002",
+      "sex": 1,
+      "role": 1,
+      "email": "admin@utc.com",
+      "password": "12345678"
+    },
+    {
+      "id": "2",
+      "name": "Studen 2",
+      "dob": "20-10-2002",
+      "sex": 1,
+      "GPA": 3.6,
+      "role": 2,
+      "email": "ngoc.nx2@utc.com",
+      "password": "12345678",
+      "class": "CNTT2"
+    }
+  ]
+}
