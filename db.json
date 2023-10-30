@@ -1,24 +1,60 @@
 {
-  "users": [
-    {
-      "id": "0",
-      "name": "Nguyen Xuan Ngoc",
-      "dob": "20-10-2002",
-      "sex": 1,
-      "role": 1,
-      "email": "admin@utc.com",
-      "password": "12345678"
-    },
-    {
-      "id": "2",
-      "name": "Studen 2",
-      "dob": "20-10-2002",
-      "sex": 1,
-      "GPA": 3.6,
-      "role": 2,
-      "email": "ngoc.nx2@utc.com",
-      "password": "12345678",
-      "class": "CNTT2"
-    }
-  ]
+    "users": [
+        {
+            "id": "0",
+            "name": "Nguyen Xuan Ngoc",
+            "dob": "20-10-2002",
+            "sex": 1,
+            "role": 1,
+            "email": "admin@utc.com",
+            "password": "12345678"
+        },
+        {
+            "id": "2",
+            "name": "Studen 2",
+            "dob": "20-10-2002",
+            "sex": 1,
+            "GPA": 3.6,
+            "role": 2,
+            "email": "ngoc.nx2@utc.com",
+            "password": "12345678",
+            "class": "CNTT2"
+        },
+
+        {
+            "id": "2",
+            "name": "Studen 2",
+            "dob": "20-10-2002",
+            "sex": 2,
+            "GPA": 3.1,
+            "role": 2,
+            "email": "ngoc1@utc.com",
+            "password": "12345678",
+            "class": "CNTT1"
+        },
+
+        {
+            "id": "2",
+            "name": "Studen 2",
+            "dob": "20-10-2002",
+            "sex": 2,
+            "GPA": 3.6,
+            "role": 2,
+            "email": "sv3@utc.com",
+            "password": "12345678",
+            "class": "CNTT1"
+        },
+
+        {
+            "id": "2",
+            "name": "Studen 2",
+            "dob": "20-10-2002",
+            "sex": 1,
+            "GPA": 3.6,
+            "role": 2,
+            "email": "sv2@utc.com",
+            "password": "12345678",
+            "class": "CNTT2"
+        }
+    ]
 }
