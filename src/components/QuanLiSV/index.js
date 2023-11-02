@@ -1,9 +1,7 @@
-import styles from './QuanLiSV.module.scss';
 import classNames from 'classnames/bind';
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { deleteStudent, getStudent } from '~/apis';
-import AddStudentModal from '../modals/AddStudent';
+import styles from './QuanLiSV.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -77,7 +75,7 @@ function QuanLiSV() {
                 </table>
             </div>
 
-            {show && <AddStudentModal />}
+            {/* {show && <AddStudentModal />} */}
         </div>
     );
 }

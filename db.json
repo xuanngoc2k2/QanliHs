@@ -59,13 +59,13 @@
             "MaMH": "INT_1",
             "TenMH": "CTDL&GT",
             "SoTC": 3,
-            "GV_id": "user_id",
-            "GV_name": "Nguyen Van A",
+            "GvId": "user_id",
+            "GvName": "Nguyen Van A",
             "HocKy": 1,
-            "Nam Hoc": 2023,
+            "NamHoc": 2023,
             "DiaChi": "306 G2",
             "Time": "T1-3 Thu 3",
-            "limit": 30
+            "Limit": 30
         }
     ],
     "diem": [

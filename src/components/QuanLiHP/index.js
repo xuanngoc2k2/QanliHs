@@ -1,65 +1,47 @@
-import { Link } from 'react-router-dom';
-import HocPhan from '../HocPhan';
-import styles from './QuanliHP.module.scss';
 import classNames from 'classnames/bind';
+import { useEffect, useState } from 'react';
+import { Button } from 'react-bootstrap';
+import { gvGetListCourse } from '~/apis';
+import HocPhan from '../HocPhan';
+import AddCourseModal from '../modals/AddCoure';
+import styles from './QuanliHP.module.scss';
 
 const cx = classNames.bind(styles);
-const courses = [
-    {
-        id: 1,
-        courseName: 'Course 1',
-        semester: 'Fall 2023',
-        teacher: 'Teacher A',
-        totalStudents: 30,
-    },
-    {
-        id: 2,
-        courseName: 'Course 2',
-        semester: 'Spring 2024',
-        teacher: 'Teacher B',
-        totalStudents: 25,
-    },
-    {
-        id: 1,
-        courseName: 'Course 1',
-        semester: 'Fall 2023',
-        teacher: 'Teacher A',
-        totalStudents: 30,
-    },
-    {
-        id: 2,
-        courseName: 'Course 2',
-        semester: 'Spring 2024',
-        teacher: 'Teacher B',
-        totalStudents: 25,
-    },
-    {
-        id: 1,
-        courseName: 'Course 1',
-        semester: 'Fall 2023',
-        teacher: 'Teacher A',
-        totalStudents: 30,
-    },
-    {
-        id: 2,
-        courseName: 'Course 2',
-        semester: 'Spring 2024',
-        teacher: 'Teacher B',
-        totalStudents: 25,
-    },
-
-];
 
 function QuanLiHP() {
+    const [show, setShow] = useState(false);
+
+    const [courses, setCourses] = useState([]);
+    const handleClose = () => {
+        setShow(false);
+    };
+
+    const handleShow = () => {
+        setShow(true);
+    };
+
+    useEffect(() => {
+        gvGetListCourse().then((data) => {
+            console.log();
+            setCourses(data);
+        });
+    }, []);
+
     return (
         <div className={cx('container')}>
-            <h1 className={cx('title')}>Danh sách Học Phần</h1>
-            <Link className={cx('btn-them')} to="/add-hp">Thêm học phần</Link>
-            <div className={cx('list-hp')}>
+            <div className="d-flex ">
+                <h1 className={cx('title')}>Danh sách Học Phần</h1>
+                <Button variant="primary" className="ms-5" onClick={handleShow}>
+                    Thêm khóa học
+                </Button>
+            </div>
+            <div className="row">
                 {courses.map((course) => (
                     <HocPhan key={course.id} data={course} />
                 ))}
             </div>
+
+            {show && <AddCourseModal show={show} handleClose={handleClose}></AddCourseModal>}
         </div>
     );
 }

@@ -42,6 +42,19 @@ export const gvUpdateCourse = async (course, id) => {
     return await axios.put(backendUrl + '/course' + id, course);
 };
 
+export const gvGetListCourse = async (HocKy, NamHoc) => {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = currentDate.getMonth() + 1 < 8 ? 2 : 1;
+
+    const year = !!NamHoc ? NamHoc : currentYear;
+    const month = !!HocKy ? HocKy : currentMonth;
+    const { data } = await axios.get(backendUrl + '/course');
+    return data.filter((item) => {
+        return item.HocKy === month && item.NamHoc === year;
+    });
+};
+
 export const gvGetCourse = async (course_id) => {
     const { data } = await axios.get(backendUrl + '/course');
     return data.filter((item) => item.MaMH === course_id);
