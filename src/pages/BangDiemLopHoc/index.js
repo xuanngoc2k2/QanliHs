@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { gvGetCourse, gvGetDiem } from '~/apis';
 
-function BangDiem() {
+function BangDiemLopHoc() {
     const [csvData, setCSVData] = useState([]);
+    const { id } = useParams();
+
+    useEffect(() => {
+        if (id) {
+            gvGetDiem(id).then((data) => {
+                console.log(data);
+                setCSVData(data);
+            });
+        }
+    }, [id]);
 
     return (
         <div>
             <div className="d-flex justify-content-between mt-5">
-                <h2>Bảng điểm</h2>
+                <h2>Bảng điểm Sinh Vien</h2>
             </div>
             <table>
                 <thead>
@@ -28,4 +40,4 @@ function BangDiem() {
     );
 }
 
-export default BangDiem;
+export default BangDiemLopHoc;

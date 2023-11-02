@@ -71,12 +71,21 @@
     "diem": [
         {
             "id": "1234",
-            "ma_sv": "user_id",
+            "ma_sv": "SV_123",
             "ten_sv": "Nguyen Van A",
             "ma_mon": "course_id",
             "ten_mh": "OOP",
             "diem_gk": 10,
             "diem_ck": 8
+        },
+        {
+            "id": "1235",
+            "ma_sv": "SV_123",
+            "ten_sv": "Nguyen Van A",
+            "ma_mon": "course_id_2",
+            "ten_mh": "Toan",
+            "diem_gk": 7,
+            "diem_ck": 7
         }
     ]
 }

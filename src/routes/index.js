@@ -1,14 +1,14 @@
+import Admin from '~/pages/Admin';
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
-import Admin from '~/pages/Admin';
 // import XemDiem from "~/pages/XemDiem"
 // import NhapDiem from "~/pages/NhapDiem"
 // import GiangVienHome from "~/pages/GiangVienHome"
 import SidebarLayout from '~/Layout/SidebarLayout';
-import QuanLiSV from '~/components/QuanLiSV';
-import Sidebar from '~/Layout/Sidebar';
 import QuanLiHP from '~/components/QuanLiHP';
-import BangDiem from '~/pages/BangDiem';
+import QuanLiSV from '~/components/QuanLiSV';
+import BangDiemLopHoc from '~/pages/BangDiemLopHoc';
+import BangDiemSV from '~/pages/BangDiemSV';
 const datalistmenu = [
     {
         title: 'Tra cứu điểm',
@@ -21,7 +21,9 @@ const datalistmenu = [
 ];
 const publicRoutes = [
     { path: '/', component: Home, layout: SidebarLayout },
-    { path: '/course/:id', component: BangDiem, layout: SidebarLayout },
+    { path: '/course/:id', component: BangDiemLopHoc, layout: SidebarLayout },
+    { path: '/sinh-vien/:id', component: BangDiemSV, layout: SidebarLayout },
+
     { path: '/login', component: Login },
     { path: '/admin', component: Admin, layout: SidebarLayout, childrenlayout: datalistmenu },
     { path: '/admin/qlsv', component: QuanLiSV, layout: SidebarLayout },
@@ -30,4 +32,4 @@ const publicRoutes = [
 
 const privateRoutes = [];
 
-export { publicRoutes, privateRoutes };
+export { privateRoutes, publicRoutes };
