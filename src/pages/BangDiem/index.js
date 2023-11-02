@@ -1,31 +1,13 @@
 import React, { useState } from 'react';
-import Papa from 'papaparse';
 
-function CSVReader() {
+function BangDiem() {
     const [csvData, setCSVData] = useState([]);
-
-    console.log(csvData);
-
-    const handleFileChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            Papa.parse(file, {
-                complete: (result) => {
-                    setCSVData(result.data);
-                },
-                header: true, // If the CSV has a header row
-                skipEmptyLines: true, // Skip empty lines
-            });
-        }
-    };
 
     return (
         <div>
             <div className="d-flex justify-content-between mt-5">
-                <h2>Import from CSV</h2>
-                <input type="file" accept=".csv" onChange={handleFileChange} />
+                <h2>Bảng điểm</h2>
             </div>
-
             <table>
                 <thead>
                     <tr>
@@ -42,10 +24,8 @@ function CSVReader() {
                     ))}
                 </tbody>
             </table>
-
-            <button>Save</button>
         </div>
     );
 }
 
-export default CSVReader;
+export default BangDiem;
