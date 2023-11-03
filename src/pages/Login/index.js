@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
 import { json, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
@@ -66,9 +67,9 @@ function Login() {
                     />
                 </div>
 
-                <button type="button" onClick={handleSubmit} className="btn btn-primary btn-block mb-4">
+                <Button type="Button" onClick={handleSubmit} className="btn btn-primary btn-block mb-4">
                     Sign in
-                </button>
+                </Button>
             </form>
         </Div>
     );

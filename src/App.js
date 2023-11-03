@@ -34,13 +34,22 @@ function App() {
 
                     {privateRoutes.map((route, index) => {
                         const Page = route.component;
+
+                        let Layout = DefaultLayout;
+                        if (route.layout) {
+                            Layout = route.layout;
+                        } else if (route.layout === null) {
+                            Layout = Fragment;
+                        }
                         return (
                             <Route
                                 key={index}
                                 path={route.path}
                                 element={
                                     <PrivateRoute>
-                                        <Page />
+                                        <Layout>
+                                            <Page />
+                                        </Layout>
                                     </PrivateRoute>
                                 }
                             />

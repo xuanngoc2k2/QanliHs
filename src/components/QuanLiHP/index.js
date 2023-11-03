@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Row } from 'react-bootstrap';
 import { gvGetListCourse } from '~/apis';
 import HocPhan from '../HocPhan';
 import AddCourseModal from '../modals/AddCoure';
@@ -10,10 +10,12 @@ const cx = classNames.bind(styles);
 
 function QuanLiHP() {
     const [show, setShow] = useState(false);
+    const [refetch, setRefetch] = useState(false);
 
     const [courses, setCourses] = useState([]);
     const handleClose = () => {
         setShow(false);
+        setRefetch(!refetch);
     };
 
     const handleShow = () => {
@@ -25,21 +27,25 @@ function QuanLiHP() {
             console.log();
             setCourses(data);
         });
-    }, []);
+    }, [refetch]);
 
     return (
-        <div className={cx('container')}>
-            <div className="d-flex ">
-                <h1 className={cx('title')}>Danh sách Học Phần</h1>
-                <Button variant="primary" className="ms-5" onClick={handleShow}>
-                    Thêm khóa học
-                </Button>
+        <div>
+            <div className="d-flex align-item-center">
+                <div>
+                    <h1 className={cx('title')}>Danh sách Học Phần</h1>
+                </div>
+                <div className="d-flex align-item-center">
+                    <Button variant="primary" className="ms-5" onClick={handleShow}>
+                        Thêm khóa học
+                    </Button>
+                </div>
             </div>
-            <div className="row">
+            <Row className="">
                 {courses.map((course) => (
                     <HocPhan key={course.id} data={course} />
                 ))}
-            </div>
+            </Row>
 
             {show && <AddCourseModal show={show} handleClose={handleClose}></AddCourseModal>}
         </div>

@@ -1,9 +1,6 @@
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
 import Admin from '~/pages/Admin';
-// import XemDiem from "~/pages/XemDiem"
-// import NhapDiem from "~/pages/NhapDiem"
-// import GiangVienHome from "~/pages/GiangVienHome"
 import SidebarLayout from '~/Layout/SidebarLayout';
 import QuanLiHP from '~/components/QuanLiHP';
 import QuanLiSV from '~/components/QuanLiSV';

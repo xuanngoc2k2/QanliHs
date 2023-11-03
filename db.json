@@ -1,91 +1,139 @@
 {
-    "users": [
-        {
-            "id": "0",
-            "name": "Nguyen Xuan Ngoc",
-            "dob": "20-10-2002",
-            "sex": 1,
-            "role": 1,
-            "email": "admin@utc.com",
-            "password": "12345678"
-        },
-        {
-            "id": "2",
-            "name": "Studen 2",
-            "dob": "20-10-2002",
-            "sex": 1,
-            "GPA": 3.6,
-            "role": 2,
-            "email": "ngoc.nx2@utc.com",
-            "password": "12345678",
-            "class": "CNTT2"
-        },
-        {
-            "id": "2",
-            "name": "Studen 2",
-            "dob": "20-10-2002",
-            "sex": 2,
-            "GPA": 3.1,
-            "role": 2,
-            "email": "ngoc1@utc.com",
-            "password": "12345678",
-            "class": "CNTT1"
-        },
-        {
-            "id": "2",
-            "name": "Studen 2",
-            "dob": "20-10-2002",
-            "sex": 2,
-            "GPA": 3.6,
-            "role": 2,
-            "email": "sv3@utc.com",
-            "password": "12345678",
-            "class": "CNTT1"
-        },
-        {
-            "id": "2",
-            "name": "Studen 2",
-            "dob": "20-10-2002",
-            "sex": 1,
-            "GPA": 3.6,
-            "role": 2,
-            "email": "sv2@utc.com",
-            "password": "12345678",
-            "class": "CNTT2"
-        }
-    ],
-    "course": [
-        {
-            "MaMH": "INT_1",
-            "TenMH": "CTDL&GT",
-            "SoTC": 3,
-            "GvId": "user_id",
-            "GvName": "Nguyen Van A",
-            "HocKy": 1,
-            "NamHoc": 2023,
-            "DiaChi": "306 G2",
-            "Time": "T1-3 Thu 3",
-            "Limit": 30
-        }
-    ],
-    "diem": [
-        {
-            "id": "1234",
-            "ma_sv": "SV_123",
-            "ten_sv": "Nguyen Van A",
-            "ma_mon": "course_id",
-            "ten_mh": "OOP",
-            "diem_gk": 10,
-            "diem_ck": 8
-        },
-        {
-            "id": "1235",
-            "ma_sv": "SV_123",
-            "ten_sv": "Nguyen Van A",
-            "ma_mon": "course_id_2",
-            "ten_mh": "Toan",
-            "diem_gk": 7,
-            "diem_ck": 7
-        }
-    ]
+  "users": [
+    {
+      "id": "0",
+      "name": "Nguyen Xuan Ngoc",
+      "dob": "20-10-2002",
+      "sex": 1,
+      "role": 1,
+      "email": "admin@utc.com",
+      "password": "12345678"
+    },
+    {
+      "id": "2",
+      "name": "Studen 2",
+      "dob": "20-10-2002",
+      "sex": 1,
+      "GPA": 3.6,
+      "role": 2,
+      "email": "ngoc.nx2@utc.com",
+      "password": "12345678",
+      "class": "CNTT2"
+    },
+    {
+      "id": "2",
+      "name": "Studen 2",
+      "dob": "20-10-2002",
+      "sex": 2,
+      "GPA": 3.1,
+      "role": 2,
+      "email": "ngoc1@utc.com",
+      "password": "12345678",
+      "class": "CNTT1"
+    },
+    {
+      "id": "2",
+      "name": "Studen 2",
+      "dob": "20-10-2002",
+      "sex": 2,
+      "GPA": 3.6,
+      "role": 2,
+      "email": "sv3@utc.com",
+      "password": "12345678",
+      "class": "CNTT1"
+    },
+    {
+      "id": "2",
+      "name": "Studen 2",
+      "dob": "20-10-2002",
+      "sex": 1,
+      "GPA": 3.6,
+      "role": 2,
+      "email": "sv2@utc.com",
+      "password": "12345678",
+      "class": "CNTT2"
+    }
+  ],
+  "course": [
+    {
+      "id": 1,
+      "MaMH": 1,
+      "TenMH": "admin@zinza.com",
+      "gv": "ManhTV",
+      "SoTC": 3,
+      "from": 1,
+      "to": 2,
+      "date": "T2",
+      "NamHoc": 2023,
+      "HocKy": 1,
+      "desc": "g1",
+      "Limit": 40,
+      "DiaChi": "admin@zinza.com"
+    },
+    {
+      "id": "244d5eb3-717a-4024-86d1-a917efdde520",
+      "MaMH": 1,
+      "TenMH": "johnsmith@example.com",
+      "gv": "ManhTV",
+      "SoTC": 3,
+      "from": 1,
+      "to": 2,
+      "date": "T2",
+      "NamHoc": 2023,
+      "HocKy": 1,
+      "desc": "Zid",
+      "Limit": 40,
+      "DiaChi": "admin@zinza.com"
+    },
+    {
+      "id": "6d44fddb-34cc-409b-9e9b-e04b54816a30",
+      "MaMH": 1,
+      "TenMH": "admin@zinza.com",
+      "gv": "ManhTV",
+      "SoTC": 3,
+      "from": 1,
+      "to": 2,
+      "date": "T2",
+      "NamHoc": 2023,
+      "HocKy": 1,
+      "desc": "accc",
+      "Limit": 40,
+      "DiaChi": ""
+    },
+    {
+      "id": "7dde9b1b-f5ec-4d75-90e9-cf8aa4651f63",
+      "MaMH": 1,
+      "TenMH": "johnsmith@example.com",
+      "gv": "ManhTV",
+      "SoTC": 3,
+      "from": 1,
+      "to": 2,
+      "date": "T2",
+      "NamHoc": 2023,
+      "HocKy": 1,
+      "desc": "1111",
+      "Limit": 40,
+      "DiaChi": ""
+    }
+  ],
+  "diem": [
+    {
+      "id": "1234",
+      "ma_sv": "SV_123",
+      "ten_sv": "Nguyen Van A",
+      "ma_mon": "course_id",
+      "ten_mh": "OOP",
+      "diem_gk": 10,
+      "diem_ck": 8
+    },
+    {
+      "id": "1235",
+      "ma_sv": "SV_123",
+      "ten_sv": "Nguyen Van A",
+      "ma_mon": "course_id_2",
+      "ten_mh": "Toan",
+      "diem_gk": 7,
+      "diem_ck": 7
+    }
+  ]
 }

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import Papa from 'papaparse';
+import UploadDiemModal from '~/components/modals/UploadDiem';
 
-function CSVReader() {
+function Home() {
     const [csvData, setCSVData] = useState([]);
-
-    console.log(csvData);
+    const [show, setShow] = useState(false);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
+
         if (file) {
+            setShow(true);
             Papa.parse(file, {
                 complete: (result) => {
                     setCSVData(result.data);
@@ -26,26 +28,11 @@ function CSVReader() {
                 <input type="file" accept=".csv" onChange={handleFileChange} />
             </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        {csvData[0] && Object.keys(csvData[0]).map((header, index) => <th key={index}>{header}</th>)}
-                    </tr>
-                </thead>
-                <tbody>
-                    {csvData.map((row, index) => (
-                        <tr key={index}>
-                            {Object.values(row).map((value, index) => (
-                                <td key={index}>{value}</td>
-                            ))}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-
-            <button>Save</button>
+            {show && (
+                <UploadDiemModal show={show} handleClose={() => setShow(false)} csvData={csvData}></UploadDiemModal>
+            )}
         </div>
     );
 }
 
-export default CSVReader;
+export default Home;

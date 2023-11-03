@@ -35,6 +35,7 @@ export const gvUpdateDiem = async (data, id) => {
 };
 
 export const gvCreateCourse = async (course) => {
+    console.log(course);
     return await axios.post(backendUrl + '/course', course);
 };
 

@@ -2,6 +2,7 @@ import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
 import { deleteStudent, getStudent } from '~/apis';
 import styles from './QuanLiSV.module.scss';
+import { Button } from 'react-bootstrap';
 
 const cx = classNames.bind(styles);
 
@@ -36,9 +37,9 @@ function QuanLiSV() {
                     <option value="CNTT1">CNTT1</option>
                     <option value="CNTT2">CNTT2</option>
                 </select>
-                <button onClick={() => setShow(true)} className={cx('btn-them')}>
+                <Button onClick={() => setShow(true)} className={cx('btn-them')}>
                     Thêm sinh viên
-                </button>
+                </Button>
             </div>
 
             <div className={cx('ds-sinhvien')}>
@@ -64,10 +65,10 @@ function QuanLiSV() {
                                 <td>{(student.sex = 1 ? 'Nam' : 'Nữ')}</td>
                                 <td>{student.GPA}</td>
                                 <td>
-                                    <button>Chi tiết</button>
-                                    <button onClick={() => handleDelete(student.id)} className={cx('delete')}>
+                                    <Button>Chi tiết</Button>
+                                    <Button onClick={() => handleDelete(student.id)} className={cx('delete')}>
                                         Xóa
-                                    </button>
+                                    </Button>
                                 </td>
                             </tr>
                         ))}
