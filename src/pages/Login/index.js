@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useCookies } from 'react-cookie';
 import { json, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { login } from '~/apis';
@@ -11,6 +12,7 @@ const Div = styled.div`
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [cookies, setCookie] = useCookies();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -21,7 +23,7 @@ function Login() {
             const user = await login(email, password);
 
             if (user) {
-                localStorage.setItem('user', JSON.stringify(user));
+                setCookie('user', user);
                 if (user.role === 1) navigate('/admin');
                 if (user.role === 2) navigate('/');
             } else {

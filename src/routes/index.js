@@ -1,6 +1,6 @@
-import Admin from '~/pages/Admin';
 import Home from '~/pages/Home';
 import Login from '~/pages/Login';
+import Admin from '~/pages/Admin';
 // import XemDiem from "~/pages/XemDiem"
 // import NhapDiem from "~/pages/NhapDiem"
 // import GiangVienHome from "~/pages/GiangVienHome"
@@ -19,7 +19,7 @@ const datalistmenu = [
         to: '#ff',
     },
 ];
-const publicRoutes = [
+const privateRoutes = [
     { path: '/', component: Home, layout: SidebarLayout },
     { path: '/course/:id', component: BangDiemLopHoc, layout: SidebarLayout },
     { path: '/sinh-vien/:id', component: BangDiemSV, layout: SidebarLayout },
@@ -30,6 +30,6 @@ const publicRoutes = [
     { path: '/admin/qlhp', component: QuanLiHP, layout: SidebarLayout },
 ];
 
-const privateRoutes = [];
+const publicRoutes = [{ path: '/login', component: Login }];
 
 export { privateRoutes, publicRoutes };
