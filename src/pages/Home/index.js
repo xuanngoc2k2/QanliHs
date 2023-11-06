@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Papa from 'papaparse';
 import UploadDiemModal from '~/components/modals/UploadDiem';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 function Home() {
     const [csvData, setCSVData] = useState([]);
     const [show, setShow] = useState(false);
+    const [cookie, setCookie] = useCookies(['user']);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (cookie.user.role === 1) navigate('/admin');
+    }, [cookie.user]);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];

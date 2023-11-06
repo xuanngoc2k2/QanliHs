@@ -1,4 +1,9 @@
-function HocPhan({ data }) {
+import { gvDeleteCourse } from '~/apis';
+import UpdateCourseModal from '../modals/UpdateCourse';
+import { useState } from 'react';
+
+function HocPhan({ data, reload }) {
+    const [showModal, setShowModal] = useState(false);
     return (
         <div className="card col col-xl-3 col-6 mx-4 my-4">
             <img src="https://img.lovepik.com/photo/40015/9423.jpg_wh860.jpg" className="card-img-top" alt="..." />
@@ -16,10 +21,40 @@ function HocPhan({ data }) {
                 <p className="card-text">Giáo viên phụ trách: {data.GvName}</p>
                 <p className="card-text">Thòi gian học: {data.Time}</p>
                 <p className="card-text">Tổng số: {data.Limit} sinh viên</p>
-                <a href="#" className="btn btn-primary">
-                    Go somewhere
-                </a>
+                <div className="d-flex justify-content-between">
+                    <button onClick={() => {}} className="btn btn-primary">
+                        Xem
+                    </button>
+                    <button onClick={() => setShowModal(true)} className="btn btn-warning">
+                        Sửa
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            try {
+                                gvDeleteCourse(data.id);
+                                reload();
+                            } catch {
+                                alert('Lỗi xóa');
+                            }
+                        }}
+                        className="btn btn-danger"
+                    >
+                        Xóa
+                    </button>
+                </div>
             </div>
+
+            {showModal && (
+                <UpdateCourseModal
+                    show={showModal}
+                    handleClose={() => {
+                        setShowModal(false);
+                        reload();
+                    }}
+                    data={data}
+                />
+            )}
         </div>
     );
 }

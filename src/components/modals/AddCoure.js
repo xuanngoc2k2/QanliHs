@@ -11,7 +11,7 @@ export default function AddCourseModal({ show, handleClose }) {
     const [to, setTo] = useState(2);
     const [date, setDate] = useState('T2');
     const [NamHoc, setNameHoc] = useState(new Date().getFullYear());
-    const [HocKy, setKiHoc] = useState(1);
+    const [HocKy, setKiHoc] = useState('1');
     const [desc, setDesc] = useState('');
     const [Limit, setLimit] = useState(40);
     const [DiaChi, setDiaChi] = useState('');

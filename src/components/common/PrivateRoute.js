@@ -10,5 +10,5 @@ export default function PrivateRoute({ children }) {
         if (!cookie.user) navigate('/login');
     }, [cookie.user]);
 
-    return <div>{children}</div>;
+    return <>{cookie.user && <div>{children}</div>}</>;
 }

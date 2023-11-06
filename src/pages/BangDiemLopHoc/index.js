@@ -8,10 +8,14 @@ function BangDiemLopHoc() {
 
     useEffect(() => {
         if (id) {
-            gvGetDiem(id).then((data) => {
-                console.log(data);
-                setCSVData(data);
-            });
+            try {
+                gvGetDiem(id).then((data) => {
+                    console.log(data);
+                    setCSVData(data);
+                });
+            } catch (error) {
+                alert('Lỗi API' + error);
+            }
         }
     }, [id]);
 

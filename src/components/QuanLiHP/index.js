@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { Button, Row } from 'react-bootstrap';
+import { Button, Form, Row } from 'react-bootstrap';
 import { gvGetListCourse } from '~/apis';
 import HocPhan from '../HocPhan';
 import AddCourseModal from '../modals/AddCoure';
@@ -11,8 +11,11 @@ const cx = classNames.bind(styles);
 function QuanLiHP() {
     const [show, setShow] = useState(false);
     const [refetch, setRefetch] = useState(false);
+    const [search, setSearch] = useState('');
 
     const [courses, setCourses] = useState([]);
+
+    console.log(courses);
     const handleClose = () => {
         setShow(false);
         setRefetch(!refetch);
@@ -23,19 +26,28 @@ function QuanLiHP() {
     };
 
     useEffect(() => {
-        gvGetListCourse().then((data) => {
-            console.log();
+        gvGetListCourse(search).then((data) => {
+            console.log(data);
             setCourses(data);
         });
-    }, [refetch]);
+    }, [refetch, search]);
 
     return (
         <div>
+            <div classNames="col col-5">
+                <h1>Danh sách Học Phần</h1>
+            </div>
             <div className="d-flex align-item-center">
-                <div>
-                    <h1 className={cx('title')}>Danh sách Học Phần</h1>
+                <div classNames="ms-4 col col-3">
+                    <Form.Control
+                        type="text"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        placeholder="Tìm kiếm"
+                    />
                 </div>
-                <div className="d-flex align-item-center">
+
+                <div className="col col-3 align-item-center">
                     <Button variant="primary" className="ms-5" onClick={handleShow}>
                         Thêm khóa học
                     </Button>
@@ -43,11 +55,18 @@ function QuanLiHP() {
             </div>
             <Row className="">
                 {courses.map((course) => (
-                    <HocPhan key={course.id} data={course} />
+                    <HocPhan
+                        handleShow={handleShow}
+                        key={course.id}
+                        data={course}
+                        reload={() => setRefetch(!refetch)}
+                        show={show}
+                        handleClose={handleClose}
+                    />
                 ))}
             </Row>
 
-            {show && <AddCourseModal show={show} handleClose={handleClose}></AddCourseModal>}
+            {show && <AddCourseModal show={show} handleClose={handleClose} />}
         </div>
     );
 }
