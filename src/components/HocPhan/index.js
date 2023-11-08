@@ -45,17 +45,21 @@ function HocPhan({ data, reload }) {
 
                     <button
                         onClick={() => {
-                            try {
-                                gvDeleteCourse(data.id);
-                                reload();
-                            } catch {
-                                alert('Lỗi xóa');
+                            const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa môn học này?');
+                            if (shouldDelete) {
+                                try {
+                                    gvDeleteCourse(data.id);
+                                    reload();
+                                } catch {
+                                    alert('Lỗi xóa');
+                                }
                             }
                         }}
                         className="btn btn-danger"
                     >
                         Xóa
                     </button>
+
                 </div>
             </div>
             {showModal && (

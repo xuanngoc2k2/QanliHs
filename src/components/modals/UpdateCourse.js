@@ -31,7 +31,7 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
             settotalSV(data?.totalSV);
             setaddress(data?.address);
         }
-    }, []);
+    }, [data]);
 
     const onSubmit = async () => {
         if (!name || !gv || !so_tc || !from || !to || !date || !year || !hocKi || !address) {
@@ -68,22 +68,22 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
             {data && (
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Cap Nhat khóa hoc</Modal.Title>
+                        <Modal.Title>Cập nhật học phần</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form>
                             <Form.Group className="mb-3" controlId="email">
-                                <Form.Label>Tên môn học</Form.Label>
+                                <Form.Label>Tên học phần</Form.Label>
                                 <Form.Control value={name} onChange={(e) => setname(e.target.value)} type="text" />
                             </Form.Group>
 
                             <div className="row">
                                 <Form.Group className="mb-3 col-9" controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Giao Vien</Form.Label>
+                                    <Form.Label>Giáo viên</Form.Label>
                                     <Form.Control value={gv} onChange={(e) => setGV(e.target.value)} type="text" />
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-3" controlId="email">
-                                    <Form.Label>So Tc</Form.Label>
+                                    <Form.Label>Số tc:</Form.Label>
                                     <Form.Control
                                         value={so_tc}
                                         onChange={(e) => setso_tc(e.target.value)}
@@ -102,11 +102,11 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                                     >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
-                                        <option value="He">He</option>
+                                        <option value="He">Hè</option>
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-3" controlId="email">
-                                    <Form.Label>Năm Hoc</Form.Label>
+                                    <Form.Label>Năm học: </Form.Label>
                                     <Form.Select value={year} onChange={(e) => setyear(e.target.value)}>
                                         <option value="2023">2023-2024</option>
                                     </Form.Select>
@@ -124,7 +124,7 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
 
                             <div className="row">
                                 <Form.Group className="mb-3 col-6" controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Thoi gian hang tuan</Form.Label>
+                                    <Form.Label>Thời gian trong tuần</Form.Label>
                                     <Form.Select value={date} onChange={(e) => setDate(e.target.value)}>
                                         <option value="T2">T2</option>
                                         <option value="T3">T3</option>
