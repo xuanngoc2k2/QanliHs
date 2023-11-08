@@ -77,8 +77,8 @@ export const gvGetCourse = async (course_id) => {
 };
 
 export const gvGetDiem = async (classId) => {
-    const { data } = await axios.get(backendUrl + '/diem');
-    return data.filter((item) => item.id === classId);
+    const { data } = await axios.get(backendUrl + '/score/admin/' + classId);
+    return data;
 };
 
 export const svGetDiem = async (sv_id) => {

@@ -6,6 +6,7 @@ import QuanLiHP from '~/components/QuanLiHP';
 import QuanLiSV from '~/components/QuanLiSV';
 import BangDiemLopHoc from '~/pages/BangDiemLopHoc';
 import BangDiemSV from '~/pages/BangDiemSV';
+import BangDiemHp from '~/components/BangDiemHP';
 const datalistmenu = [
     {
         title: 'Tra cứu điểm',
@@ -20,7 +21,7 @@ const privateRoutes = [
     { path: '/', component: Home, layout: SidebarLayout },
     { path: '/course/:id', component: BangDiemLopHoc, layout: SidebarLayout },
     { path: '/sinh-vien/:id', component: BangDiemSV, layout: SidebarLayout },
-
+    { path: '/score/admin/:id', component: BangDiemHp, layout: SidebarLayout },
     { path: '/login', component: Login },
     { path: '/admin', component: Admin, layout: SidebarLayout, childrenlayout: datalistmenu },
     { path: '/admin/qlsv', component: QuanLiSV, layout: SidebarLayout },

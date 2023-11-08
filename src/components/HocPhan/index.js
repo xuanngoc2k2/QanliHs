@@ -1,6 +1,7 @@
 import { gvDeleteCourse, gvGetCourse } from '~/apis';
 import UpdateCourseModal from '../modals/UpdateCourse';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function HocPhan({ data, reload }) {
     const [showModal, setShowModal] = useState(false);
@@ -18,6 +19,11 @@ function HocPhan({ data, reload }) {
         };
         fetchData();
     }, [data.id]);
+
+    const navigate = useNavigate();
+    const handleClick = (id) => {
+        navigate('/score/admin/' + id);
+    }
     return (
         <div className="card col col-xl-3 col-6 mx-4 my-4">
             <img src="https://img.lovepik.com/photo/40015/9423.jpg_wh860.jpg" className="card-img-top" alt="..." />
@@ -36,7 +42,7 @@ function HocPhan({ data, reload }) {
                 <p className="card-text">Thòi gian học: {data.date} tiết {data.from} - {data.to}</p>
                 <p className="card-text">Tổng số: {data.totalSV} sinh viên</p>
                 <div className="d-flex justify-content-between">
-                    <button onClick={() => { }} className="btn btn-primary">
+                    <button onClick={() => { handleClick(data.id) }} className="btn btn-primary">
                         Xem
                     </button>
                     <button onClick={() => setShowModal(true)} className="btn btn-warning">
