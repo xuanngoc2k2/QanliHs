@@ -3,56 +3,57 @@ import { Button, Form, Modal } from 'react-bootstrap';
 import { gvUpdateCourse } from '~/apis';
 
 export default function UpdateCourseModal({ show, handleClose, data }) {
-    const [TenMH, setTenMH] = useState('');
+    console.log(data)
+    const [name, setname] = useState('');
     const [gv, setGV] = useState('');
-    const [SoTC, setSoTc] = useState(3);
+    const [so_tc, setso_tc] = useState(3);
     const [from, setFrom] = useState(1);
     const [to, setTo] = useState(2);
     const [date, setDate] = useState('T2');
-    const [NamHoc, setNameHoc] = useState(new Date().getFullYear());
-    const [HocKy, setKiHoc] = useState('1');
+    const [year, setyear] = useState(new Date().getFullYear());
+    const [hocKi, setKiHoc] = useState('1');
     const [desc, setDesc] = useState('');
-    const [Limit, setLimit] = useState(40);
-    const [DiaChi, setDiaChi] = useState('');
-
+    const [totalSV, settotalSV] = useState(40);
+    const [address, setaddress] = useState('');
+    // console.log(name, gv, so_tc, from, to, date, year, hocKi, address)
+    // console.log(data)
     useEffect(() => {
         if (data) {
-            setTenMH(data.TenMH);
+            setname(data.name);
             setGV(data?.gv);
-            setSoTc(data?.SoTC);
+            setso_tc(data?.so_tc);
             setFrom(data?.from);
             setTo(data?.to);
             setDate(data?.date);
-            setNameHoc(data?.NamHoc);
-            setKiHoc(data?.HocKy);
+            setyear(data?.year);
+            setKiHoc(data?.hocKi);
             setDesc(data?.desc);
-            setLimit(data?.Limit);
-            setDiaChi(data?.DiaChi);
+            settotalSV(data?.totalSV);
+            setaddress(data?.address);
         }
     }, []);
 
     const onSubmit = async () => {
-        if (!TenMH || !gv || !SoTC || !from || !to || !date || !NamHoc || !HocKy || !desc) {
+        if (!name || !gv || !so_tc || !from || !to || !date || !year || !hocKi || !address) {
             alert(' Vui long nhap du thong tin');
             return;
         }
 
         try {
-            await gvUpdateCourse(
-                {
-                    MaMH: 1,
-                    TenMH,
-                    gv,
-                    SoTC,
-                    from,
-                    to,
-                    date,
-                    NamHoc,
-                    HocKy,
-                    desc,
-                    Limit,
-                    DiaChi,
-                },
+            const courseUpdate = {
+                name,
+                gv,
+                so_tc: Number(so_tc),
+                from,
+                to,
+                date,
+                year,
+                hocKi,
+                desc,
+                address,
+                totalSV: Number(totalSV)
+            }
+            await gvUpdateCourse(courseUpdate,
                 data.id,
             );
         } catch (error) {
@@ -73,7 +74,7 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                         <Form>
                             <Form.Group className="mb-3" controlId="email">
                                 <Form.Label>Tên môn học</Form.Label>
-                                <Form.Control value={TenMH} onChange={(e) => setTenMH(e.target.value)} type="text" />
+                                <Form.Control value={name} onChange={(e) => setname(e.target.value)} type="text" />
                             </Form.Group>
 
                             <div className="row">
@@ -84,8 +85,8 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                                 <Form.Group className="mb-3 col-3" controlId="email">
                                     <Form.Label>So Tc</Form.Label>
                                     <Form.Control
-                                        value={SoTC}
-                                        onChange={(e) => setSoTc(e.target.value)}
+                                        value={so_tc}
+                                        onChange={(e) => setso_tc(e.target.value)}
                                         type="number"
                                     />
                                 </Form.Group>
@@ -95,7 +96,7 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                                 <Form.Group className="mb-3 col-6" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Kì học</Form.Label>
                                     <Form.Select
-                                        value={HocKy}
+                                        value={hocKi}
                                         onChange={(e) => setKiHoc(e.target.value)}
                                         aria-label="Default select example"
                                     >
@@ -106,7 +107,7 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-3" controlId="email">
                                     <Form.Label>Năm Hoc</Form.Label>
-                                    <Form.Select value={NamHoc} onChange={(e) => setNameHoc(e.target.value)}>
+                                    <Form.Select value={year} onChange={(e) => setyear(e.target.value)}>
                                         <option value="2023">2023-2024</option>
                                     </Form.Select>
                                 </Form.Group>
@@ -114,8 +115,8 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                                 <Form.Group className="mb-3 col-3" controlId="email">
                                     <Form.Label>Phòng học</Form.Label>
                                     <Form.Control
-                                        value={DiaChi}
-                                        onChange={(e) => setDiaChi(e.target.value)}
+                                        value={address}
+                                        onChange={(e) => setaddress(e.target.value)}
                                         type="text"
                                     />
                                 </Form.Group>

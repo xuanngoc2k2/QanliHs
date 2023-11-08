@@ -1,14 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from './routes';
 
 import DefaultLayout from './Layout/DefaultLayout';
 import { Fragment } from 'react';
 import PrivateRoute from './components/common/PrivateRoute';
+import { useCookies } from 'react-cookie';
 
 function App() {
+
+
     return (
         <Router>
-            <div className="App">
+            <div classNames="App">
                 <Routes>
                     {publicRoutes.map((route, index) => {
                         const Page = route.component;

@@ -1,14 +1,17 @@
 import axios from 'axios';
 
-const backendUrl = 'http://localhost:3000';
-
+const backendUrl = 'http://localhost:3030';
+// http://localhost:3030/user/login
 export const login = async (email, password) => {
-    const { data } = await axios.get(backendUrl + '/users');
-    const user = data.find((item) => {
-        return item.email === email;
-    });
-    if (user && user.password === password) return user;
-    return null;
+    const { data } = await axios.post(backendUrl + '/user/login', { email, password });
+    if (data) return data;
+    else return null;
+    // const user = data.find((item) => {
+    //     return item.email === email;
+    // });
+    // console.log(user);
+    // if (user && user.password === password) return user;
+    // return null;
 };
 
 export const getStudent = async (selectClass) => {
@@ -44,6 +47,7 @@ export const gvDeleteCourse = async (id) => {
 };
 
 export const gvUpdateCourse = async (course, id) => {
+    console.log(course)
     return await axios.put(backendUrl + '/course/' + id, course);
 };
 
@@ -55,11 +59,11 @@ export const gvGetListCourse = async (search, HocKy, NamHoc) => {
     // const year = !!NamHoc ? NamHoc : currentYear;
     // const month = !!HocKy ? HocKy : currentMonth;
     const { data } = await axios.get(backendUrl + '/course');
-    const searchText = search.toLowerCase().trim();
-    return data.filter((item) => {
-        const name = item.TenMH.toLowerCase();
-        return !!name.includes(searchText);
-    });
+    // const searchText = search.toLowerCase().trim();
+    // return data.filter((item) => {
+    //     const name = item.TenMH.toLowerCase();
+    //     return !!name.includes(searchText);
+    // });
     return data;
     // return data.filter((item) => {
     //     return item.HocKy === month && item.NamHoc === year;
@@ -67,8 +71,9 @@ export const gvGetListCourse = async (search, HocKy, NamHoc) => {
 };
 
 export const gvGetCourse = async (course_id) => {
-    const { data } = await axios.get(backendUrl + '/course');
-    return data.filter((item) => item.MaMH === course_id);
+    const { data } = await axios.get(backendUrl + '/course/' + course_id);
+    // console.log(data);
+    return data;
 };
 
 export const gvGetDiem = async (classId) => {

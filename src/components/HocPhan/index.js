@@ -1,28 +1,42 @@
-import { gvDeleteCourse } from '~/apis';
+import { gvDeleteCourse, gvGetCourse } from '~/apis';
 import UpdateCourseModal from '../modals/UpdateCourse';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function HocPhan({ data, reload }) {
     const [showModal, setShowModal] = useState(false);
+    const [courseData, setCourseData] = useState(null);
+
+    useEffect(() => {
+        // Truy cập API và lấy dữ liệu khi component được render
+        const fetchData = async () => {
+            try {
+                const response = await gvGetCourse(data.id);
+                setCourseData(response);
+            } catch (error) {
+                console.error('Lỗi lấy dữ liệu', error);
+            }
+        };
+        fetchData();
+    }, [data.id]);
     return (
         <div className="card col col-xl-3 col-6 mx-4 my-4">
             <img src="https://img.lovepik.com/photo/40015/9423.jpg_wh860.jpg" className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{data.TenMH}</h5>
                 <div className="d-flex justify-content-between">
-                    <p className="card-text">Mã MH: {data.MaMH}</p>
-                    <p className="card-text ">Số tín chỉ: {data.SoTC}</p>
+                    <p className="card-text">Tên MH: {data.name}</p>
+                    <p className="card-text ">Số tín chỉ: {data.so_tc}</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <p className="card-text">Kì học: {data.HocKy}</p>
-                    <p className="card-text">Năm học: {data.NamHoc}</p>
+                    <p className="card-text">Kì học: {data.hocKi}</p>
+                    <p className="card-text">Năm học: {data.year}</p>
                 </div>
-
-                <p className="card-text">Giáo viên phụ trách: {data.GvName}</p>
-                <p className="card-text">Thòi gian học: {data.Time}</p>
-                <p className="card-text">Tổng số: {data.Limit} sinh viên</p>
+                <p className="card-text">Phòng học: {data.address}</p>
+                <p className="card-text">Giáo viên phụ trách: {data.gv}</p>
+                <p className="card-text">Thòi gian học: {data.date} tiết {data.from} - {data.to}</p>
+                <p className="card-text">Tổng số: {data.totalSV} sinh viên</p>
                 <div className="d-flex justify-content-between">
-                    <button onClick={() => {}} className="btn btn-primary">
+                    <button onClick={() => { }} className="btn btn-primary">
                         Xem
                     </button>
                     <button onClick={() => setShowModal(true)} className="btn btn-warning">
@@ -44,15 +58,14 @@ function HocPhan({ data, reload }) {
                     </button>
                 </div>
             </div>
-
             {showModal && (
-                <UpdateCourseModal
+                < UpdateCourseModal
                     show={showModal}
                     handleClose={() => {
                         setShowModal(false);
                         reload();
                     }}
-                    data={data}
+                    data={courseData}
                 />
             )}
         </div>

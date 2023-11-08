@@ -13,7 +13,8 @@ const UploadDiemModal = ({ show, handleClose, csvData }) => {
                     <thead>
                         <tr>
                             {csvData[0] &&
-                                Object.keys(csvData[0]).map((header, index) => <th key={index}>{header}</th>)}
+                                Object.keys(csvData[0]).map((header, index) =>
+                                    <th key={index}>{header}</th>)}
                         </tr>
                     </thead>
                     <tbody>

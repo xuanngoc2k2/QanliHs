@@ -15,7 +15,6 @@ function QuanLiHP() {
 
     const [courses, setCourses] = useState([]);
 
-    console.log(courses);
     const handleClose = () => {
         setShow(false);
         setRefetch(!refetch);
@@ -27,31 +26,28 @@ function QuanLiHP() {
 
     useEffect(() => {
         gvGetListCourse(search).then((data) => {
-            console.log(data);
             setCourses(data);
         });
-    }, [refetch, search]);
+    }, [courses, refetch, search]);
 
     return (
         <div>
-            <div classNames="col col-5">
+            <div className="col col-5">
                 <h1>Danh sách Học Phần</h1>
             </div>
-            <div className="d-flex align-item-center">
-                <div classNames="ms-4 col col-3">
-                    <Form.Control
+            <div classNames="d-flex align-item-center">
+                <div className="ms-4 col col-6 d-flex">
+                    <Form.Control style={{ width: 400 }}
                         type="text"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                         placeholder="Tìm kiếm"
                     />
-                </div>
-
-                <div className="col col-3 align-item-center">
                     <Button variant="primary" className="ms-5" onClick={handleShow}>
                         Thêm khóa học
                     </Button>
                 </div>
+
             </div>
             <Row className="">
                 {courses.map((course) => (
