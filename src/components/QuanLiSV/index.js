@@ -3,19 +3,34 @@ import { useEffect, useState } from 'react';
 import { deleteStudent, getStudent, getStudentByName } from '~/apis';
 import styles from './QuanLiSV.module.scss';
 import { Button, Form } from 'react-bootstrap';
+import SinhVienModal from '../modals/SinhVien';
 
 const cx = classNames.bind(styles);
 
 function QuanLiSV() {
-    const [selectedClass, setSelectedClass] = useState('');
+    // const [selectedClass, setSelectedClass] = useState('');
     const [refetch, setRefetch] = useState(true);
     const [show, setShow] = useState(false);
     const [search, setSearch] = useState('');
     const [students, setStudents] = useState([]);
 
-    const handleDelete = async (id) => {
+    const handleClose = () => {
+        setShow(false);
         setRefetch(!refetch);
-        await deleteStudent(id);
+    };
+
+    const handleDelete = async (id) => {
+        const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa sinh viên này?');
+        if (shouldDelete) {
+            try {
+                setRefetch(!refetch);
+                await deleteStudent(id);
+            }
+            catch {
+                alert('Sinh viên đang trong danh sách môn học');
+            }
+        }
+
     };
 
     useEffect(() => {
@@ -31,11 +46,11 @@ function QuanLiSV() {
             }
         };
         fetchData()
-    }, [selectedClass, refetch, search]);
+    }, [students, refetch, search]);
 
     return (
         <div className={cx('wrapper')}>
-            <h1 className={cx('title')}>Quản lí sinh viên</h1>
+            <h1 className={cx('title')}>Danh sách sinh viên</h1>
             <div className={cx('info-lop')}>
                 <Form.Control style={{ width: 400 }}
                     type="text"
@@ -91,7 +106,7 @@ function QuanLiSV() {
                 </table>
             </div>
 
-            {/* {show && <AddStudentModal />} */}
+            {show && <SinhVienModal show={show} handleClose={handleClose} />}
         </div>
     );
 }

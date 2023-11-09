@@ -23,6 +23,23 @@ export const getStudentByName = async (name) => {
     return data;
 };
 
+export const getSvbyMsv = async (msv) => {
+    try {
+        const { data } = await axios.get(backendUrl + '/user/masv/' + msv);
+        return data;
+    }
+    catch {
+        return null;
+    }
+
+
+};
+
+export const createSv = async (sv) => {
+    const { data } = await axios.post(backendUrl + '/user/sinh-vien', sv);
+    return data;
+}
+
 export const deleteStudent = async (id) => {
     await axios.delete(backendUrl + '/user/' + id);
 };
