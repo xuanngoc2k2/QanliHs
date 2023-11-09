@@ -14,19 +14,17 @@ export const login = async (email, password) => {
     // return null;
 };
 
-export const getStudent = async (selectClass) => {
-    const { data } = await axios.get(backendUrl + '/users');
-
-    const user = data.filter((item) => {
-        delete item.password;
-        return item.role === 2 && item.class === selectClass;
-    });
-
-    return user;
+export const getStudent = async () => {
+    const { data } = await axios.get(backendUrl + '/user');
+    return data;
+};
+export const getStudentByName = async (name) => {
+    const { data } = await axios.get(backendUrl + '/user/' + name);
+    return data;
 };
 
 export const deleteStudent = async (id) => {
-    await axios.delete(backendUrl + '/users/' + id);
+    await axios.delete(backendUrl + '/user/' + id);
 };
 
 export const gvImportDiem = async (data) => {

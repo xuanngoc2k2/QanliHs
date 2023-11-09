@@ -10,6 +10,7 @@ export default function AddSinhVienModals({ id, show, handleClose }) {
     const [diemqt, setDiemqt] = useState('');
     const [diemthi, setDiemthi] = useState('');
 
+
     const onSubmit = async () => {
         if (!hodem ||
             !name ||

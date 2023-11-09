@@ -1,8 +1,8 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { deleteStudent, getStudent } from '~/apis';
+import { deleteStudent, getStudent, getStudentByName } from '~/apis';
 import styles from './QuanLiSV.module.scss';
-import { Button } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 const cx = classNames.bind(styles);
 
@@ -10,7 +10,7 @@ function QuanLiSV() {
     const [selectedClass, setSelectedClass] = useState('');
     const [refetch, setRefetch] = useState(true);
     const [show, setShow] = useState(false);
-
+    const [search, setSearch] = useState('');
     const [students, setStudents] = useState([]);
 
     const handleDelete = async (id) => {
@@ -19,16 +19,31 @@ function QuanLiSV() {
     };
 
     useEffect(() => {
-        getStudent(selectedClass).then((data) => {
-            setStudents(data);
-        });
-    }, [selectedClass, refetch]);
+        const fetchData = async () => {
+            try {
+                let response = await getStudent();
+                if (search !== '') {
+                    response = await getStudentByName(search);
+                }
+                setStudents(response);
+            } catch (error) {
+                console.error('Lỗi lấy dữ liệu', error);
+            }
+        };
+        fetchData()
+    }, [selectedClass, refetch, search]);
 
     return (
         <div className={cx('wrapper')}>
             <h1 className={cx('title')}>Quản lí sinh viên</h1>
             <div className={cx('info-lop')}>
-                <select
+                <Form.Control style={{ width: 400 }}
+                    type="text"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Tìm kiếm"
+                />
+                {/* <select
                     className={cx('btn-chon')}
                     value={selectedClass}
                     onChange={(e) => setSelectedClass(e.target.value)}
@@ -36,7 +51,7 @@ function QuanLiSV() {
                     <option value="">Chọn lớp</option>
                     <option value="CNTT1">CNTT1</option>
                     <option value="CNTT2">CNTT2</option>
-                </select>
+                </select> */}
                 <Button onClick={() => setShow(true)} className={cx('btn-them')}>
                     Thêm sinh viên
                 </Button>
@@ -48,10 +63,9 @@ function QuanLiSV() {
                         <tr>
                             <th>STT</th>
                             <th>Mã sinh viên</th>
-                            <th>Họ tên</th>
-                            <th>Ngày sinh</th>
-                            <th>Giới tính</th>
-                            <th>GPA</th>
+                            <th>Họ đệm</th>
+                            <th>Tên</th>
+                            <th>Lớp</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -59,11 +73,12 @@ function QuanLiSV() {
                         {students.map((student, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
-                                <td>SV0{student.id}</td>
-                                <td>{student.name}</td>
-                                <td>{student.dob}</td>
-                                <td>{(student.sex = 1 ? 'Nam' : 'Nữ')}</td>
-                                <td>{student.GPA}</td>
+                                <td>{student.email}</td>
+                                <td>{student.firstName}</td>
+                                <td>{student.lastName}</td>
+                                <td>{student.class}</td>
+                                {/* <td>{(student.sex = 1 ? 'Nam' : 'Nữ')}</td> */}
+                                {/* <td>{student.GPA}</td> */}
                                 <td>
                                     <Button>Chi tiết</Button>
                                     <Button onClick={() => handleDelete(student.id)} className={cx('delete')}>
