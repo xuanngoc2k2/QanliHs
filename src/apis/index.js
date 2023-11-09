@@ -90,7 +90,6 @@ export const gvUpdateDiemSv = async (classId, dataDiem) => {
     console.log(dataDiem);
     try {
         dataDiem.map(async (value) => {
-            console.log(value);
             await axios.post(backendUrl + '/score/course/' + classId, value);
         })
     }

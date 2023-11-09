@@ -5,6 +5,7 @@ import { gvGetDiem, gvSearchDiemSV, gvUpdateCourse, gvUpdateDiemSv } from "~/api
 import styles from './bangdiem.module.scss';
 import Papa from 'papaparse';
 import classNames from 'classnames/bind';
+import AddSinhVienModals from '../modals/AddSvDiem';
 const cx = classNames.bind(styles);
 
 function BangDiemHp() {
@@ -13,7 +14,12 @@ function BangDiemHp() {
     const [search, setSearch] = useState('');
     const [show, setShow] = useState(false);
     const [csvData, setCSVData] = useState([]);
+    const [refetch, setRefetch] = useState(false);
 
+    const handleClose = () => {
+        setShow(false);
+        setRefetch(!refetch);
+    };
     useEffect(() => {
         // Truy cập API và lấy dữ liệu khi component được render
         const fetchData = async () => {
@@ -28,10 +34,9 @@ function BangDiemHp() {
             }
         };
         fetchData();
-    }, [id, search]);
+    }, [id, search, refetch]);
     const handleShow = () => {
         setShow(true);
-        // UploadDiemModal(show, null, data)
     };
     const handleFileChange = (e) => {
         const file = e.target.files[0];
@@ -66,21 +71,6 @@ function BangDiemHp() {
         });
         gvUpdateDiemSv(id, dataUp);
     };
-
-
-    // const handleSave = () => {
-    //     csvData.map((values, index) => {
-    //         const dataNew = []
-    //         for (const key in values) {
-    //             if (Object.hasOwnProperty.call(values, key)) {
-    //                 const value = values[key];
-    //                 dataNew.push(value);
-    //             }
-    //         }
-    //         console.log(dataNew);
-    //     })
-    // }
-
     return (
         <div>
             <div className="col col-5">
@@ -107,6 +97,10 @@ function BangDiemHp() {
                                     </Button></> : <></>}
                         </div>
                     }
+                    <Button style={{ marginLeft: 30 }} variant="primary" onClick={handleShow}>
+                        Thêm sinh viên
+                    </Button>
+                    {show && <AddSinhVienModals id={id} show={show} handleClose={handleClose} />}
                 </div>
                 {data.length ?
                     <div className="row d-flex align-items-center">
@@ -157,7 +151,7 @@ function BangDiemHp() {
                         </tbody>
                     </table> : <></>}
             </div>
-        </div>);
+        </div >);
 }
 
 export default BangDiemHp;
