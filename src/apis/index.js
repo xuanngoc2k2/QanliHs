@@ -81,6 +81,25 @@ export const gvGetDiem = async (classId) => {
     return data;
 };
 
+export const gvSearchDiemSV = async (classId, studentName) => {
+    const { data } = await axios.get(backendUrl + '/score/admin/' + classId + '/' + studentName);
+    return data;
+};
+
+export const gvUpdateDiemSv = async (classId, dataDiem) => {
+    console.log(dataDiem);
+    try {
+        dataDiem.map(async (value) => {
+            console.log(value);
+            await axios.post(backendUrl + '/score/course/' + classId, value);
+        })
+    }
+    catch (error) {
+        return alert(error)
+    }
+    // const { data } = await axios.post(backendUrl + '/score/course/' + classId, dataDiem)
+    return true
+}
 export const svGetDiem = async (sv_id) => {
     const { data } = await axios.get(backendUrl + '/diem');
     return data.filter((item) => item.ma_sv === sv_id);

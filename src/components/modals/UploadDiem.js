@@ -4,7 +4,7 @@ import { Button, Modal } from 'react-bootstrap';
 const UploadDiemModal = ({ show, handleClose, csvData }) => {
     console.log({ csvData });
     return (
-        <Modal show={show} onHide={handleClose}>
+        <Modal show={show} onHide={handleClose} style={{ width: 500 }}>
             <Modal.Header closeButton>
                 <Modal.Title>Import from csv</Modal.Title>
             </Modal.Header>
