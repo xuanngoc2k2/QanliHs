@@ -14,12 +14,16 @@ const datalistmenu = [
         title: 'Học phần',
         to: '/admin/qlhp',
     },
+    {
+        title: 'Thống kê',
+        to: '/admin/thongke'
+    }
 ];
 function SidebarLayout({ children, data }) {
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
-                <Header />
+                <Header title={"Hệ Thống thông tin trường đại học"} />
             </div>
             <div className={cx('container')}>
                 <Sidebar listmenu={datalistmenu} />

@@ -43,8 +43,8 @@ export default function AddCourseModal({ show, handleClose }) {
                 name,
                 gv,
                 so_tc: Number(so_tc),
-                from,
-                to,
+                from: Number(from),
+                to: Number(to),
                 date,
                 year,
                 hocKi,
@@ -79,7 +79,7 @@ export default function AddCourseModal({ show, handleClose }) {
                                     <Form.Label>Tổng số:</Form.Label>
                                     <Form.Control
                                         value={totalSV}
-                                        onChange={(e) => settotalSV(e.target.value)}
+                                        onChange={(e) => settotalSV(+e.target.value)}
                                         type="number"
                                     />
                                 </Form.Group>
@@ -95,7 +95,7 @@ export default function AddCourseModal({ show, handleClose }) {
                                     <Form.Label>Số tc:</Form.Label>
                                     <Form.Control
                                         value={so_tc}
-                                        onChange={(e) => setso_tc(e.target.value)}
+                                        onChange={(e) => setso_tc(+e.target.value)}
                                         type="number"
                                     />
                                 </Form.Group>
@@ -111,7 +111,6 @@ export default function AddCourseModal({ show, handleClose }) {
                                     >
                                         <option value="1">1</option>
                                         <option value="2">2</option>
-                                        <option value="He">Hè</option>
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-3" controlId="email">
@@ -148,7 +147,7 @@ export default function AddCourseModal({ show, handleClose }) {
                                     <Form.Label>Từ tiết</Form.Label>
                                     <Form.Control
                                         value={from}
-                                        onChange={(e) => setFrom(e.target.value)}
+                                        onChange={(e) => setFrom(+e.target.value)}
                                         type="number"
                                     />
                                 </Form.Group>
@@ -162,7 +161,7 @@ export default function AddCourseModal({ show, handleClose }) {
                                 <Form.Label>Mô tả</Form.Label>
                                 <Form.Control
                                     value={desc}
-                                    onChange={(e) => setDesc(e.target.value)}
+                                    onChange={(e) => setDesc(+e.target.value)}
                                     as="textarea"
                                     rows={3}
                                 />

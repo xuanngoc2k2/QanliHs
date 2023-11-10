@@ -14,14 +14,14 @@ export const login = async (email, password) => {
     // return null;
 };
 
-export const getStudent = async () => {
-    const { data } = await axios.get(backendUrl + '/user');
+export const getStudent = async (search) => {
+    const { data } = await axios.get(backendUrl + `/user?search=${search}`);
     return data;
 };
-export const getStudentByName = async (name) => {
-    const { data } = await axios.get(backendUrl + '/user/' + name);
-    return data;
-};
+// export const getStudentByName = async (name) => {
+//     const { data } = await axios.get(backendUrl + '/user/' + name);
+//     return data;
+// };
 
 export const getSvbyMsv = async (msv) => {
     try {
@@ -31,8 +31,6 @@ export const getSvbyMsv = async (msv) => {
     catch {
         return null;
     }
-
-
 };
 
 export const createSv = async (sv) => {
@@ -53,8 +51,8 @@ export const gvUpdateDiem = async (data, id) => {
 };
 
 export const gvCreateCourse = async (course) => {
-    console.log(course);
     return await axios.post(backendUrl + '/course', course);
+    // console.log(course);
 };
 
 export const gvDeleteCourse = async (id) => {
@@ -62,27 +60,19 @@ export const gvDeleteCourse = async (id) => {
 };
 
 export const gvUpdateCourse = async (course, id) => {
-    console.log(course)
+    // console.log(course)
     return await axios.put(backendUrl + '/course/' + id, course);
 };
 
-export const gvGetListCourse = async (search, HocKy, NamHoc) => {
-    // const currentDate = new Date();
-    // const currentYear = currentDate.getFullYear();
-    // const currentMonth = currentDate.getMonth() + 1 < 8 ? 2 : 1;
-
-    // const year = !!NamHoc ? NamHoc : currentYear;
-    // const month = !!HocKy ? HocKy : currentMonth;
-    const { data } = await axios.get(backendUrl + '/course');
-    // const searchText = search.toLowerCase().trim();
-    // return data.filter((item) => {
-    //     const name = item.TenMH.toLowerCase();
-    //     return !!name.includes(searchText);
-    // });
+export const gvThongKe = async () => {
+    const { data } = await axios.get(backendUrl + '/score/count/2')
+    // console.log(data);
     return data;
-    // return data.filter((item) => {
-    //     return item.HocKy === month && item.NamHoc === year;
-    // });
+}
+
+export const gvGetListCourse = async (search) => {
+    const { data } = await axios.get(backendUrl + `/course?search=${search}`);
+    return data;
 };
 
 export const gvGetCourse = async (course_id) => {
@@ -114,7 +104,7 @@ export const gvUpdateDiemSv = async (classId, dataDiem) => {
     // const { data } = await axios.post(backendUrl + '/score/course/' + classId, dataDiem)
     return true
 }
-export const svGetDiem = async (sv_id) => {
-    const { data } = await axios.get(backendUrl + '/diem');
-    return data.filter((item) => item.ma_sv === sv_id);
+export const svGetDiem = async (id) => {
+    const { data } = await axios.get(backendUrl + '/score/student/' + id);
+    return data;
 };

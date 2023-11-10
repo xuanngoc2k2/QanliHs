@@ -23,8 +23,8 @@ function QuanLiSV() {
         const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa sinh viên này?');
         if (shouldDelete) {
             try {
-                setRefetch(!refetch);
                 await deleteStudent(id);
+                setRefetch(!refetch);
             }
             catch {
                 alert('Sinh viên đang trong danh sách môn học');
@@ -36,17 +36,17 @@ function QuanLiSV() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let response = await getStudent();
-                if (search !== '') {
-                    response = await getStudentByName(search);
-                }
+                let response = await getStudent(search);
+                // if (search !== '') {
+                //     response = await getStudentByName(search);
+                // }
                 setStudents(response);
             } catch (error) {
                 console.error('Lỗi lấy dữ liệu', error);
             }
         };
         fetchData()
-    }, [students, refetch, search]);
+    }, [refetch, search]);
 
     return (
         <div className={cx('wrapper')}>

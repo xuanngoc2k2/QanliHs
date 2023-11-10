@@ -26,9 +26,10 @@ function QuanLiHP() {
 
     useEffect(() => {
         gvGetListCourse(search).then((data) => {
+            console.log(search);
             setCourses(data);
         });
-    }, [courses, refetch, search]);
+    }, [refetch, search]);
 
     return (
         <div>

@@ -86,7 +86,7 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                                     <Form.Label>Số tc:</Form.Label>
                                     <Form.Control
                                         value={so_tc}
-                                        onChange={(e) => setso_tc(e.target.value)}
+                                        onChange={(e) => setso_tc(+e.target.value)}
                                         type="number"
                                     />
                                 </Form.Group>
@@ -139,13 +139,13 @@ export default function UpdateCourseModal({ show, handleClose, data }) {
                                     <Form.Label>Từ tiết</Form.Label>
                                     <Form.Control
                                         value={from}
-                                        onChange={(e) => setFrom(e.target.value)}
+                                        onChange={(e) => setFrom(+e.target.value)}
                                         type="number"
                                     />
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-3" controlId="email">
                                     <Form.Label>Đến tiết</Form.Label>
-                                    <Form.Control value={to} onChange={(e) => setTo(e.target.value)} type="number" />
+                                    <Form.Control value={to} onChange={(e) => setTo(+e.target.value)} type="number" />
                                 </Form.Group>
                             </div>
 

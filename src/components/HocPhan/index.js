@@ -22,7 +22,7 @@ function HocPhan({ data, reload }) {
 
     const navigate = useNavigate();
     const handleClick = (id) => {
-        navigate('/score/admin/' + id);
+        navigate('/admin/score/' + id);
     }
     return (
         <div className="card col col-xl-3 col-6 mx-4 my-4">
@@ -39,7 +39,7 @@ function HocPhan({ data, reload }) {
                 </div>
                 <p className="card-text">Phòng học: {data.address}</p>
                 <p className="card-text">Giáo viên phụ trách: {data.gv}</p>
-                <p className="card-text">Thòi gian học: {data.date} tiết {data.from} - {data.to}</p>
+                <p className="card-text">Thời gian học: {data.date} tiết {data.from} - {data.to}</p>
                 <p className="card-text">Tổng số: {data.totalSV} sinh viên</p>
                 <div className="d-flex justify-content-between">
                     <button onClick={() => { handleClick(data.id) }} className="btn btn-primary">
@@ -50,11 +50,11 @@ function HocPhan({ data, reload }) {
                     </button>
 
                     <button
-                        onClick={() => {
+                        onClick={async () => {
                             const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa môn học này?');
                             if (shouldDelete) {
                                 try {
-                                    gvDeleteCourse(data.id);
+                                    await gvDeleteCourse(data.id);
                                     reload();
                                 } catch {
                                     alert('Lỗi xóa');
