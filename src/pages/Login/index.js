@@ -25,7 +25,7 @@ function Login() {
 
             if (user) {
                 setCookie('user', user);
-                if (user.role === 1) navigate('/admin');
+                if (user.role === 1) navigate('/admin/qlsv');
                 if (user.role === 2) navigate('/');
             } else {
                 alert('Email hoặc mật khẩu không đúng');

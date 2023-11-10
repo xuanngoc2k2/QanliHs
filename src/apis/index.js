@@ -64,8 +64,8 @@ export const gvUpdateCourse = async (course, id) => {
     return await axios.put(backendUrl + '/course/' + id, course);
 };
 
-export const gvThongKe = async () => {
-    const { data } = await axios.get(backendUrl + '/score/count/2')
+export const gvThongKe = async (id) => {
+    const { data } = await axios.get(backendUrl + '/score/count/' + id)
     // console.log(data);
     return data;
 }

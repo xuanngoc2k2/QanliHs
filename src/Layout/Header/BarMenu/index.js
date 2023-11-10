@@ -13,7 +13,7 @@ function BarMenu({ data }) {
         <div className={cx('box-menu')}>
             <ul>
                 <li>
-                    <a href="/">Trang chủ</a>
+                    <a href="/admin/qlsv">Trang chủ</a>
                 </li>
                 <li>
                     {cookie.user && (

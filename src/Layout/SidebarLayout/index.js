@@ -14,10 +14,6 @@ const datalistmenu = [
         title: 'Học phần',
         to: '/admin/qlhp',
     },
-    {
-        title: 'Thống kê',
-        to: '/admin/thongke'
-    }
 ];
 function SidebarLayout({ children, data }) {
     return (

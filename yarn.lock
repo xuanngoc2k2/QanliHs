@@ -9637,7 +9637,7 @@
   "resolved" "https://registry.npmjs.org/style-loader/-/style-loader-3.3.3.tgz"
   "version" "3.3.3"
 
-"styled-components@^6.1.0":
+"styled-components@^6.1.1":
   "integrity" "sha512-cpZZP5RrKRIClBW5Eby4JM1wElLVP4NQrJbJ0h10TidTyJf4SIIwa3zLXOoPb4gJi8MsJ8mjq5mu2IrEhZIAcQ=="
   "resolved" "https://registry.npmjs.org/styled-components/-/styled-components-6.1.1.tgz"
   "version" "6.1.1"

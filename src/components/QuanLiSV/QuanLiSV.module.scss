@@ -70,3 +70,50 @@ td {
 .ds-sinhvien Button.delete:hover {
     background-color: #cc0000;
 }
+
+/* QuanLiSV.module.scss */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.pagination li {
+  margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  transition: background-color 0.3s;
+}
+
+.pagination li.active {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.pagination li:hover {
+  background-color: #ddd;
+}
+
+/* Optional: Style for previous and next buttons */
+.pagination .previous,
+.pagination .next {
+  margin: 0 5px;
+  display: inline-block;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #3498db;
+  color: #fff;
+  transition: background-color 0.3s;
+}
+
+.pagination .previous:hover,
+.pagination .next:hover {
+  background-color: #217dbb;
+}

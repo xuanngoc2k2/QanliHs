@@ -1,12 +1,25 @@
-import { gvDeleteCourse, gvGetCourse } from '~/apis';
+import { gvDeleteCourse, gvGetCourse, gvThongKe } from '~/apis';
 import UpdateCourseModal from '../modals/UpdateCourse';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ThongKe from '../modals/ThongKe';
 
 function HocPhan({ data, reload }) {
     const [showModal, setShowModal] = useState(false);
     const [courseData, setCourseData] = useState(null);
-
+    const [showbd, setShowbd] = useState(false);
+    const [databd, setDatabd] = useState({});
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await gvThongKe(data.id);
+                setDatabd(response);
+            } catch (error) {
+                console.error('Lỗi lấy dữ liệu biểu đồ', error);
+            }
+        };
+        fetchData();
+    }, [data.id])
     useEffect(() => {
         // Truy cập API và lấy dữ liệu khi component được render
         const fetchData = async () => {
@@ -48,6 +61,17 @@ function HocPhan({ data, reload }) {
                     <button onClick={() => setShowModal(true)} className="btn btn-warning">
                         Sửa
                     </button>
+                    <button onClick={() => {
+                        if (databd !== null) {
+                            setShowbd(true)
+                        }
+                        else {
+                            alert('Chưa đủ dữ liệu điểm');
+                        }
+                    }
+                    } className="btn btn-info">
+                        Biểu đồ
+                    </button>
 
                     <button
                         onClick={async () => {
@@ -68,17 +92,28 @@ function HocPhan({ data, reload }) {
 
                 </div>
             </div>
-            {showModal && (
-                < UpdateCourseModal
-                    show={showModal}
-                    handleClose={() => {
-                        setShowModal(false);
-                        reload();
-                    }}
-                    data={courseData}
-                />
-            )}
-        </div>
+            {
+                showModal && (
+                    < UpdateCourseModal
+                        show={showModal}
+                        handleClose={() => {
+                            setShowModal(false);
+                            reload();
+                        }}
+                        data={courseData}
+                    />
+                )
+            }
+            {
+                showbd && (
+                    <ThongKe show={showbd}
+                        handleClose={() => {
+                            setShowbd(false);
+                            reload();
+                        }} data={databd} />
+                )
+            }
+        </div >
     );
 }
 

@@ -4,6 +4,7 @@ import { deleteStudent, getStudent, getStudentByName } from '~/apis';
 import styles from './QuanLiSV.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import SinhVienModal from '../modals/SinhVien';
+import ReactPaginate from 'react-paginate';
 
 const cx = classNames.bind(styles);
 
@@ -13,12 +14,20 @@ function QuanLiSV() {
     const [show, setShow] = useState(false);
     const [search, setSearch] = useState('');
     const [students, setStudents] = useState([]);
+    const [currentPage, setCurrentPage] = useState(0);
+
+    const pageCount = Math.ceil(students.length / 10); // Giả sử hiển thị 10 sinh viên mỗi trang
+
+    // Lọc danh sách sinh viên để hiển thị trang hiện tại
+    const displayedStudents = students.slice(currentPage * 10, (currentPage + 1) * 10);
 
     const handleClose = () => {
         setShow(false);
         setRefetch(!refetch);
     };
-
+    const handlePageClick = (selectedPage) => {
+        setCurrentPage(selectedPage.selected);
+    };
     const handleDelete = async (id) => {
         const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa sinh viên này?');
         if (shouldDelete) {
@@ -85,7 +94,7 @@ function QuanLiSV() {
                         </tr>
                     </thead>
                     <tbody>
-                        {students.map((student, index) => (
+                        {displayedStudents.map((student, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
                                 <td>{student.email}</td>
@@ -104,6 +113,21 @@ function QuanLiSV() {
                         ))}
                     </tbody>
                 </table>
+                <ReactPaginate
+                    previousLabel={'previous'}
+                    nextLabel={'next'}
+                    breakLabel={'...'}
+                    breakClassName={'break-me'}
+                    pageCount={pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={5}
+                    onPageChange={handlePageClick}
+                    containerClassName={cx('pagination')}
+                    subContainerClassName={cx('pages pagination')}
+                    activeClassName={'active'}
+                    previousClassName={cx('custom-previous')} // Add a custom class for the previous button
+                    nextClassName={cx('custom-next')}
+                />
             </div>
 
             {show && <SinhVienModal show={show} handleClose={handleClose} />}

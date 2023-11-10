@@ -7,7 +7,6 @@ import QuanLiSV from '~/components/QuanLiSV';
 import BangDiemLopHoc from '~/pages/BangDiemLopHoc';
 import BangDiemSV from '~/pages/BangDiemSV';
 import BangDiemHp from '~/components/BangDiemHP';
-import ThongKe from '~/components/ThongKe';
 import SvHome from '~/pages/Home';
 const datalistmenu = [
     {
@@ -24,7 +23,6 @@ const privateRoutes = [
     { path: '/course/:id', component: BangDiemLopHoc, layout: SidebarLayout },
     { path: '/sinh-vien/:id', component: BangDiemSV, layout: SidebarLayout },
     { path: '/admin/score/:id', component: BangDiemHp, layout: SidebarLayout },
-    { path: '/admin/thongke', component: ThongKe, layout: SidebarLayout },
     { path: '/login', component: Login },
     { path: '/admin', component: Admin, layout: SidebarLayout, childrenlayout: datalistmenu },
     { path: '/admin/qlsv', component: QuanLiSV, layout: SidebarLayout },
