@@ -108,3 +108,15 @@ export const svGetDiem = async (id) => {
     const { data } = await axios.get(backendUrl + '/score/student/' + id);
     return data;
 };
+
+export const getKi = async (id) => {
+    const { data } = await axios.get(backendUrl + '/score/ki/' + id);
+    return data;
+}
+
+
+export const getDiemKi = async (id, ki) => {
+    const { data } = await axios.get(backendUrl + `/score/ki/${id}/${ki}`);
+    // console.log(data, id, ki)
+    return data;
+}

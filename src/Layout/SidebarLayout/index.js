@@ -31,6 +31,9 @@ function SidebarLayout({ children, data }) {
             },
         ];
     }
+    else {
+        datalistmenu = datalistmenu
+    }
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>
