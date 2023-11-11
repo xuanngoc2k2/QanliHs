@@ -1,3 +1,4 @@
+import { useCookies } from 'react-cookie';
 import Footer from '../Footer';
 import Header from '../Header';
 import Sidebar from '../Sidebar';
@@ -5,7 +6,8 @@ import styles from './SidebarLayout.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
-const datalistmenu = [
+
+let datalistmenu = [
     {
         title: 'Sinh viên',
         to: '/admin/qlsv',
@@ -16,6 +18,19 @@ const datalistmenu = [
     },
 ];
 function SidebarLayout({ children, data }) {
+    const [cookie, setCookie, removeCookie] = useCookies(['user']);
+    if (cookie.user && cookie.user.role == 2) {
+        datalistmenu = [
+            {
+                title: 'Tra cứu điểm',
+                to: '/',
+            },
+            {
+                title: 'Xem học phần',
+                to: '/admin/qlhp',
+            },
+        ];
+    }
     return (
         <div className={cx('wrapper')}>
             <div className={cx('header')}>

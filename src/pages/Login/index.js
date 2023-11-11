@@ -4,7 +4,6 @@ import { useCookies } from 'react-cookie';
 import { json, useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { login } from '~/apis';
-
 const Div = styled.div`
     padding-top: 100px;
     width: 500px;
@@ -13,11 +12,13 @@ const Div = styled.div`
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [cookies, setCookie] = useCookies();
+    const [cookies, setCookie, removeCookie] = useCookies();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        removeCookie('user');
+
         // let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         // if (!email.match(regex)) alert('Email không hợp lệ!');
         try {
