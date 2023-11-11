@@ -116,6 +116,8 @@ export default function AddCourseModal({ show, handleClose }) {
                                 <Form.Group className="mb-3 col-3" controlId="email">
                                     <Form.Label>Năm học: </Form.Label>
                                     <Form.Select value={year} onChange={(e) => setyear(e.target.value)}>
+                                        <option value="2021-2022">2021-2022</option>
+                                        <option value="2022-2023">2022-2023</option>
                                         <option value="2023-2024">2023-2024</option>
                                     </Form.Select>
                                 </Form.Group>

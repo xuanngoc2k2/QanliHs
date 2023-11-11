@@ -27,7 +27,7 @@ function SidebarLayout({ children, data }) {
             },
             {
                 title: 'Xem học phần',
-                to: '/admin/qlhp',
+                to: `/sinh-vien/course/${cookie.user.id}`
             },
         ];
     }

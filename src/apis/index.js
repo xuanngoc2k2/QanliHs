@@ -120,3 +120,9 @@ export const getDiemKi = async (id, ki) => {
     // console.log(data, id, ki)
     return data;
 }
+
+export const getAllhp = async (id) => {
+    const { data } = await axios.get(backendUrl + `/score/sinhvien/${id}`);
+    console.log(data)
+    return data;
+}

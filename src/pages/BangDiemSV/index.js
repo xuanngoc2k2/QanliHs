@@ -83,9 +83,6 @@ function BangDiemSV({ data, userInfo }) {
                     </select>
                 </div>
             </div>
-            <div className='d-flex'>
-
-            </div>
             <div className="d-flex justify-content-between mt-3">
                 <h6>BẢNG ĐIỂM CHI TIẾT</h6>
             </div>
@@ -146,19 +143,21 @@ function BangDiemSV({ data, userInfo }) {
                     {selectedSemester && dataL.length ? dataL.map((row, index) => (
                         <tr key={index}
                             className={index % 2 === 0 ? 'table-light' : 'table-primary'}>
-                            {
-                                Object.values(row).map((value, index) => (
+                            {<>
+                                <td key={index}>{index + 1}</td>
+                                {Object.values(row).map((value, index) => (
                                     <td key={index}>{value}</td>
-                                ))
+                                ))}</>
                             }
                         </tr>
                     )) : data.map((row, index) => (
                         <tr key={index}
                             className={index % 2 === 0 ? 'table-light' : 'table-primary'}>
-                            {
-                                Object.values(row).map((value, index) => (
+                            {<>
+                                <td key={index}>{index + 1}</td>
+                                {Object.values(row).map((value, index) => (
                                     <td key={index}>{value}</td>
-                                ))
+                                ))}</>
                             }
                         </tr>
                     ))}

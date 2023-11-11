@@ -8,6 +8,7 @@ import BangDiemLopHoc from '~/pages/BangDiemLopHoc';
 import BangDiemSV from '~/pages/BangDiemSV';
 import BangDiemHp from '~/components/BangDiemHP';
 import SvHome from '~/pages/Home';
+import DanhSachHp from '~/components/DSHocPhan';
 const datalistmenu = [
     {
         title: 'Tra cứu điểm',
@@ -22,6 +23,7 @@ const privateRoutes = [
     { path: '/', component: SvHome, layout: SidebarLayout },
     { path: '/course/:id', component: BangDiemLopHoc, layout: SidebarLayout },
     { path: '/sinh-vien/:id', component: BangDiemSV, layout: SidebarLayout },
+    { path: '/sinh-vien/course/:id', component: DanhSachHp, layout: SidebarLayout },
     { path: '/admin/score/:id', component: BangDiemHp, layout: SidebarLayout },
     { path: '/login', component: Login },
     { path: '/admin', component: Admin, layout: SidebarLayout, childrenlayout: datalistmenu },
