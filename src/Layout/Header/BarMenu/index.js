@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import styles from './BarMenu.module.scss';
 import classNames from 'classnames/bind';
 import { useCookies } from 'react-cookie';
+import { logout } from '~/apis';
 
 const cx = classNames.bind(styles);
 
@@ -15,11 +16,11 @@ function BarMenu({ data }) {
                 <li>
                     <a href="/admin/qlsv">Trang chủ</a>
                 </li>
-                <li>
+                <li style={{ cursor: 'pointer' }}>
                     {cookie.user && (
                         <div
-                            onClick={() => {
-                                removeCookie('user');
+                            onClick={async () => {
+                                await logout();
                                 navigate('/login');
                             }}
                         >
