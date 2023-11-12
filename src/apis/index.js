@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const backendUrl = 'http://localhost:3030';
+const backendUrl = 'http://localhost:3333';
 // http://localhost:3030/user/login
 export const login = async (email, password) => {
     const { data } = await axios.post(backendUrl + '/user/login', { email, password });
@@ -65,7 +65,7 @@ export const gvUpdateCourse = async (course, id) => {
 };
 
 export const gvThongKe = async (id) => {
-    const { data } = await axios.get(backendUrl + '/score/count/' + id)
+    const { data } = await axios.get(backendUrl + '/score/gv/count/' + id)
     // console.log(data);
     return data;
 }
