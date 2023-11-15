@@ -12,10 +12,12 @@ function BarMenu({ data }) {
     const navigate = useNavigate();
     return (
         <div className={cx('box-menu')}>
-            <ul style={{
-                marginBottom: -3,
-                marginTop: -4,
-            }}>
+            <ul
+                style={{
+                    marginBottom: -3,
+                    marginTop: -4,
+                }}
+            >
                 <li>
                     <a href="/admin/qlsv">Trang chủ</a>
                 </li>
@@ -24,7 +26,7 @@ function BarMenu({ data }) {
                         <div
                             onClick={async () => {
                                 await logout();
-                                navigate('/login');
+                                location.href = '/login';
                             }}
                         >
                             Đăng Xuất
