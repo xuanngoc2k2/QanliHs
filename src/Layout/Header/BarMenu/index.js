@@ -12,7 +12,10 @@ function BarMenu({ data }) {
     const navigate = useNavigate();
     return (
         <div className={cx('box-menu')}>
-            <ul>
+            <ul style={{
+                marginBottom: -3,
+                marginTop: -4,
+            }}>
                 <li>
                     <a href="/admin/qlsv">Trang chủ</a>
                 </li>
@@ -28,6 +31,12 @@ function BarMenu({ data }) {
                         </div>
                     )}
                     {!cookie.user && <a href="/">Đăng nhập</a>}
+                </li>
+                <li>
+                    <a href="/">Hỏi đáp</a>
+                </li>
+                <li>
+                    <a href="/">Trợ giúp</a>
                 </li>
             </ul>
         </div>

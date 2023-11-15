@@ -3,12 +3,12 @@ import axios from 'axios';
 const backendUrl = 'http://localhost:3333';
 // http://localhost:3030/user/login
 
-export const logout = async () => {
-    const { data } = await axios.get(backendUrl + '/user/logout', {
-        withCredentials: true,
-    });
-    return data;
-};
+// export const logout = async () => {
+//     const { data } = await axios.get(backendUrl + '/user/logout', {
+//         withCredentials: true,
+//     });
+//     return data;
+// };
 export const login = async (email, password) => {
     const { data } = await axios.post(
         backendUrl + '/user/login',

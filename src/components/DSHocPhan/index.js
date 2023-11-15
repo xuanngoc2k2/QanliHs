@@ -3,11 +3,8 @@ import { useParams } from "react-router-dom";
 import { getAllhp, getKi } from "~/apis";
 
 function DanhSachHp() {
-    // const [semesters, setSemesters] = useState([]);
-    // const { id } = useParams();
     const [data, setdate] = useState([]);
     const { id } = useParams();
-    // const semesters = ['Kì 1', 'Kì 2', 'Kì 3', 'Kì 4'];
     useEffect(() => {
         if (id) {
             try {
@@ -20,31 +17,13 @@ function DanhSachHp() {
             }
         }
     }, [id]);
-
-    // State để lưu trữ kì được chọn
-    // const [selectedSemester, setSelectedSemester] = useState("");
-    // console.log(selectedSemester)
-    // Hàm xử lý khi giá trị của select thay đổi
-    // const handleSemesterChange = (e) => {
-    //     const selectedValue = e.target.value;
-    //     setSelectedSemester(selectedValue);
-    //     // console.log(selectedSemester);
-    //     try {
-    //         getAllhp(id).then((value) => {
-    //             // console.log(value);
-    //             setdateL(value)
-    //         });
-    //     }
-    //     catch {
-    //         alert("lỗi lcoj");
-    //     }
-    //     // const datal =
-    // };
     return (<div>
         <div className='d-flex justify-content-between mt-5 col col-8' style={{
             color: 'green',
-            fontWeight: 'bold'
-        }}>
+            fontWeight: 'bold',
+            marginTop: 30,
+            fontSize: 20
+        }}>DANH SÁCH HỌC PHẦN ĐÃ HỌC
         </div>
         <table className="table table-bordered mt-3">
             <thead>
@@ -106,16 +85,6 @@ function DanhSachHp() {
                 </tr>
             </thead>
             <tbody>
-                {/* {selectedSemester && dataL.length ? dataL.map((row, index) => (
-                    <tr key={index}
-                        className={index % 2 === 0 ? 'table-light' : 'table-primary'}>
-                        {
-                            Object.values(row).map((value, index) => (
-                                <td key={index}>{value}</td>
-                            ))
-                        }
-                    </tr>
-                )) :  */}
                 {data.map((row, index) => (
                     <tr key={index} className={index % 2 === 0 ? 'table-light' : 'table-primary'}>
                         {<>

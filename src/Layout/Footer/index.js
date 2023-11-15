@@ -10,14 +10,22 @@ function Footer() {
                 <div className={cx('address')}>
                     <div className={cx('logo')}>
                         <img src={images.logo_footer} className={cx('logo')} width={110} />
-                        <p className={cx('title')}>
+                        <p style={{
+                            marginBottom: 0,
+                        }} className={cx('title')}>
                             Trường Đại Học Giao Thông vận tải
                         </p>
                     </div>
                     <div className={cx("desc")}>
-                        <p>Địa chỉ: Số 3 phố Cầu Giấy, P.Láng Thượng, Q.Đống Đa, Hà Nội.</p>
-                        <p>Điện thoại: (84.24) 37663311 - Fax: (84.24)37669613</p>
-                        <p>Email: dhgtvt@utc.edu.vn</p>
+                        <p style={{
+                            marginBottom: 0,
+                        }}>Địa chỉ: Số 3 phố Cầu Giấy, P.Láng Thượng, Q.Đống Đa, Hà Nội.</p>
+                        <p style={{
+                            marginBottom: 0,
+                        }}>Điện thoại: (84.24) 37663311 - Fax: (84.24)37669613</p>
+                        <p style={{
+                            marginBottom: 0,
+                        }}>Email: dhgtvt@utc.edu.vn</p>
                     </div>
                 </div>
                 <div className={cx('follow')}>

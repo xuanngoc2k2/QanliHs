@@ -7,7 +7,10 @@ function TopHeader({ data }) {
     return (
         <div className={cx('box')}>
             {data.map((title, index) => {
-                return <p className={cx('title')} key={index}>{title}</p>
+                return <p style={{
+                    marginBottom: -3,
+                    marginTop: -3
+                }} className={cx('title')} key={index}>{title}</p>
             })}
         </div>
     );
