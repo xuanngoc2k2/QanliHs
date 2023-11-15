@@ -22,10 +22,7 @@ function Login() {
     }, [cookies.user]);
     const handleSubmit = async (e) => {
         e.preventDefault();
-        removeCookie('user');
 
-        // let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        // if (!email.match(regex)) alert('Email không hợp lệ!');
         try {
             const user = await login(email, password);
             if (!user) {

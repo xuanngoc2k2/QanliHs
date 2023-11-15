@@ -2,6 +2,13 @@ import axios from 'axios';
 
 const backendUrl = 'http://localhost:3333';
 // http://localhost:3030/user/login
+
+export const logout = async () => {
+    const { data } = await axios.get(backendUrl + '/user/logout', {
+        withCredentials: true,
+    });
+    return data;
+};
 export const login = async (email, password) => {
     const { data } = await axios.post(
         backendUrl + '/user/login',
@@ -33,8 +40,7 @@ export const getSvbyMsv = async (msv) => {
     try {
         const { data } = await axios.get(backendUrl + '/user/masv/' + msv);
         return data;
-    }
-    catch {
+    } catch {
         return null;
     }
 };
@@ -42,7 +48,7 @@ export const getSvbyMsv = async (msv) => {
 export const createSv = async (sv) => {
     const { data } = await axios.post(backendUrl + '/user/sinh-vien', sv);
     return data;
-}
+};
 
 export const deleteStudent = async (id) => {
     await axios.delete(backendUrl + '/user/' + id);
@@ -71,10 +77,10 @@ export const gvUpdateCourse = async (course, id) => {
 };
 
 export const gvThongKe = async (id) => {
-    const { data } = await axios.get(backendUrl + '/score/gv/count/' + id)
+    const { data } = await axios.get(backendUrl + '/score/gv/count/' + id);
     // console.log(data);
     return data;
-}
+};
 
 export const gvGetListCourse = async (search) => {
     const { data } = await axios.get(backendUrl + `/course?search=${search}`);
@@ -102,14 +108,13 @@ export const gvUpdateDiemSv = async (classId, dataDiem) => {
     try {
         dataDiem.map(async (value) => {
             await axios.post(backendUrl + '/score/course/' + classId, value);
-        })
-    }
-    catch (error) {
-        return alert(error)
+        });
+    } catch (error) {
+        return alert(error);
     }
     // const { data } = await axios.post(backendUrl + '/score/course/' + classId, dataDiem)
-    return true
-}
+    return true;
+};
 export const svGetDiem = async (id) => {
     const { data } = await axios.get(backendUrl + '/score/student/' + id);
     return data;
@@ -118,17 +123,16 @@ export const svGetDiem = async (id) => {
 export const getKi = async (id) => {
     const { data } = await axios.get(backendUrl + '/score/ki/' + id);
     return data;
-}
-
+};
 
 export const getDiemKi = async (id, ki) => {
     const { data } = await axios.get(backendUrl + `/score/ki/${id}/${ki}`);
     // console.log(data, id, ki)
     return data;
-}
+};
 
 export const getAllhp = async (id) => {
     const { data } = await axios.get(backendUrl + `/score/sinhvien/${id}`);
-    console.log(data)
+    console.log(data);
     return data;
-}
+};
