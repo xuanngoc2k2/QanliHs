@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from 'react-bootstrap';
 import { useCookies } from 'react-cookie';
-import { json, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import { login } from '~/apis';
 const Div = styled.div`
@@ -14,7 +14,12 @@ function Login() {
     const [password, setPassword] = useState('');
     const [cookies, setCookie, removeCookie] = useCookies();
     const navigate = useNavigate();
-
+    useEffect(() => {
+        if (cookies.user) {
+            if (cookies.user.role === 1) navigate('/admin/qlsv');
+            if (cookies.user.role === 2) navigate('/');
+        }
+    }, [cookies.user]);
     const handleSubmit = async (e) => {
         e.preventDefault();
         removeCookie('user');
@@ -23,14 +28,17 @@ function Login() {
         // if (!email.match(regex)) alert('Email không hợp lệ!');
         try {
             const user = await login(email, password);
-
-            if (user) {
-                setCookie('user', user);
-                if (user.role === 1) navigate('/admin/qlsv');
-                if (user.role === 2) navigate('/');
-            } else {
+            if (!user) {
                 alert('Email hoặc mật khẩu không đúng');
             }
+            // } catch
+            // if (user) {
+            //     setCookie('user', user);
+            //     if (user.role === 1) navigate('/admin/qlsv');
+            //     if (user.role === 2) navigate('/');
+            // } else {
+            //     alert('Email hoặc mật khẩu không đúng');
+            // }
         } catch (error) {
             alert('Server Error');
         }

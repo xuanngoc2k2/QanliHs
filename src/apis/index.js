@@ -3,17 +3,23 @@ import axios from 'axios';
 const backendUrl = 'http://localhost:3333';
 // http://localhost:3030/user/login
 export const login = async (email, password) => {
-    const { data } = await axios.post(backendUrl + '/user/login', { email, password });
+    const { data } = await axios.post(
+        backendUrl + '/user/login',
+        { email, password },
+        {
+            withCredentials: true,
+        },
+    );
     if (data) return data;
     else return null;
-    // const user = data.find((item) => {
-    //     return item.email === email;
-    // });
-    // console.log(user);
-    // if (user && user.password === password) return user;
-    // return null;
 };
 
+export const logout = async () => {
+    const { data } = await axios.get(backendUrl + '/user/logout', {
+        withCredentials: true,
+    });
+    return data;
+};
 export const getStudent = async (search) => {
     const { data } = await axios.get(backendUrl + `/user?search=${search}`);
     return data;
