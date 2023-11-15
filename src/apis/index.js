@@ -140,3 +140,8 @@ export const getAllhp = async (id) => {
     console.log(data);
     return data;
 };
+
+export const countScoreSv = async (id) => {
+    const { data } = await axios.get(backendUrl + `/score/count/${id}`);
+    return data;
+}

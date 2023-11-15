@@ -29,6 +29,10 @@ function SidebarLayout({ children, data }) {
                 title: 'Xem học phần',
                 to: `/sinh-vien/course/${cookie.user.id}`
             },
+            {
+                title: 'Thống kê điểm',
+                to: `/score/count/${cookie.user.id}`
+            }
         ];
     }
     else {

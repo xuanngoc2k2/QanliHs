@@ -1,47 +1,68 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
-import { CartesianGrid, Cell, Legend, Pie, PieChart, Tooltip } from 'recharts';
+import React, { useEffect, useState } from 'react';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { countScoreSv } from '~/apis';
 
-export default function SvThongKe({ show, handleClose, data }) {
-    const chartData = Object.entries(data).map(([grade, count]) => ({ grade, count }));
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#AF19FF', '#FF6666', '#00CC66', '#FF3300', '#808080'];
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884D8', '#FF0000', '#FF6666', '#FFA07A', '#A9A9A9'];
 
-    return (
-        <>
-            {show && (
-                <Modal show={show} onHide={handleClose} centered>
-                    <div className='sd'>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Thống kê</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <PieChart width={400} height={400}>
-                                <Pie
-                                    data={chartData}
-                                    cx={200}
-                                    cy={200}
-                                    innerRadius={60}
-                                    outerRadius={80}
-                                    fill="#8884d8"
-                                    dataKey="count"
-                                >
-                                    {chartData.map((entry, index) => (
-                                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                    ))}
-                                </Pie>
-                                <Tooltip />
-                                <Legend />
-                            </PieChart>
-                        </Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={handleClose}>
-                                Close
-                            </Button>
-                        </Modal.Footer>
-                    </div>
-                </Modal>
-            )}
-        </>
+const ChartContainer = styled.div`
+    display: flex;
+    // flex-direction: column;
+    align-items: center;
+`;
+
+const ChartTitle = styled.div`
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: green;
+`;
+
+const SvThongKe = () => {
+    const { id } = useParams();
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        try {
+            countScoreSv(id).then((value) => {
+                console.log(value);
+                setData(Object.entries(value).map(([grade, count], index) => ({ grade, count, fill: COLORS[index] })));
+            });
+        } catch {
+            alert("Lỗi lấy API");
+        }
+    }, [id]);
+    const totalCredits = data.reduce((acc, score) => acc + score.count, 0);
+
+    return (<>
+        <ChartTitle>Biểu đồ điểm Sinh Viên</ChartTitle>
+        <ChartContainer>
+            <PieChart width={600} height={400}>
+                <Pie
+                    data={data}
+                    dataKey="count"
+                    nameKey="grade"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={120}
+                    fill="#8884d8"
+                    label
+                >
+                    {data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+            </PieChart>
+            <div>
+                Tổng số tín đã học: {totalCredits}
+            </div>
+        </ChartContainer>
+    </>
     );
-}
+};
+
+export default SvThongKe;
