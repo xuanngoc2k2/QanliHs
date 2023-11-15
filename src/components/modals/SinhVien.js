@@ -1,15 +1,23 @@
 import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
-import { createSv, getSvbyMsv, gvCreateCourse, gvUpdateCourse, gvUpdateDiemSv } from '~/apis';
+import { createSv, getSvbyMsv, gvCreateCourse, gvUpdateCourse, gvUpdateDiemSv, updateSv } from '~/apis';
 
-export default function SinhVienModal({ id, show, handleClose }) {
+export default function SinhVienModal({ data, show, handleClose }) {
     const [hodem, setHodem] = useState('');
     const [name, setName] = useState('');
     const [lop, setLop] = useState('');
     const [msv, setMsv] = useState('');
+    console.log(data);
     // const [diemqt, setDiemqt] = useState('');
     // const [diemthi, setDiemthi] = useState('');
-
+    useEffect(() => {
+        if (data) {
+            setHodem(data.firstName);
+            setName(data.lastName);
+            setLop(data.class);
+            setMsv(data.email);
+        }
+    }, [data])
 
     const onSubmit = async () => {
         if (!hodem ||
@@ -21,20 +29,25 @@ export default function SinhVienModal({ id, show, handleClose }) {
         }
 
         try {
-            if (!await getSvbyMsv(msv)) {
-                alert("Mã sinh viên đã tồn tại");
+            let sv = {
+                "firstName": hodem,
+                "lastName": name,
+                "class": lop,
+                "email": msv,
+            }
+            if (Object.keys(data).length !== 0) {
+                await updateSv(data.id, sv);
+                alert("Update thành công")
             }
             else {
-                let sv = {
-                    "firstName": hodem,
-                    "lastName": name,
-                    "class": lop,
-                    "email": msv,
+                if (Object.keys(getSvbyMsv(msv)).length !== 0) {
+                    alert("Mã sinh viên đã tồn tại");
                 }
-                console.log(sv);
-                await createSv(sv);
+                else {
+                    console.log(sv);
+                    await createSv(sv);
+                }
             }
-            // await gvCreateCourse(course);
         } catch (error) {
             alert(error);
         }
@@ -53,18 +66,18 @@ export default function SinhVienModal({ id, show, handleClose }) {
                             <div className='row'>
                                 <Form.Group className="mb-3 col-7">
                                     <Form.Label>Họ đệm</Form.Label>
-                                    <Form.Control value={hodem} onChange={(e) => setHodem(e.target.value)} type="text" />
+                                    <Form.Control disabled={Object.keys(data).length === 0 ? false : true} value={hodem} onChange={(e) => setHodem(e.target.value)} type="text" />
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-5" controlId="email">
                                     <Form.Label>Tên</Form.Label>
-                                    <Form.Control value={name} onChange={(e) => setName(e.target.value)} type="text" />
+                                    <Form.Control disabled={Object.keys(data).length === 0 ? false : true} value={name} onChange={(e) => setName(e.target.value)} type="text" />
                                 </Form.Group>
                             </div>
 
                             <div className="row">
                                 <Form.Group className="mb-3 col-7" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Mã sinh viên</Form.Label>
-                                    <Form.Control value={msv} onChange={(e) => setMsv(e.target.value)} type="text" />
+                                    <Form.Control disabled={Object.keys(data).length === 0 ? false : true} value={msv} onChange={(e) => setMsv(e.target.value)} type="text" />
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-5" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Lớp</Form.Label>

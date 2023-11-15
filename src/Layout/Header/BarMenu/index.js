@@ -13,8 +13,8 @@ function BarMenu({ data }) {
     return (
         <div className={cx('box-menu')}>
             <ul style={{
-                marginBottom: -3,
-                marginTop: -4,
+                marginBottom: -1,
+                marginTop: -2,
             }}>
                 <li>
                     <a href="/admin/qlsv">Trang chủ</a>
@@ -33,10 +33,10 @@ function BarMenu({ data }) {
                     {!cookie.user && <a href="/">Đăng nhập</a>}
                 </li>
                 <li>
-                    <a href="/">Hỏi đáp</a>
+                    <a href="/admin/qlsv">Hỏi đáp</a>
                 </li>
                 <li>
-                    <a href="/">Trợ giúp</a>
+                    <a href="/admin/qlsv">Trợ giúp</a>
                 </li>
             </ul>
         </div>

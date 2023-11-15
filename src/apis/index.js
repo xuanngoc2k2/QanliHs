@@ -50,6 +50,10 @@ export const createSv = async (sv) => {
     return data;
 };
 
+export const updateSv = async (id, sv) => {
+    const { data } = await axios.put(backendUrl + '/user/masv/' + id, sv);
+    return data
+}
 export const deleteStudent = async (id) => {
     await axios.delete(backendUrl + '/user/' + id);
 };

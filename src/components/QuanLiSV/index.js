@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { useEffect, useState } from 'react';
-import { deleteStudent, getStudent, getStudentByName } from '~/apis';
+import { deleteStudent, getStudent, getStudentByName, getSvbyMsv } from '~/apis';
 import styles from './QuanLiSV.module.scss';
 import { Button, Form } from 'react-bootstrap';
 import SinhVienModal from '../modals/SinhVien';
@@ -9,13 +9,28 @@ import ReactPaginate from 'react-paginate';
 const cx = classNames.bind(styles);
 
 function QuanLiSV() {
-    // const [selectedClass, setSelectedClass] = useState('');
     const [refetch, setRefetch] = useState(true);
     const [show, setShow] = useState(false);
     const [search, setSearch] = useState('');
     const [students, setStudents] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
+    const [sortOrder, setSortOrder] = useState('asc'); // 'asc' hoặc 'desc'
+    const [sortField, setSortField] = useState('lastName'); // Trường dữ liệu sẽ được sắp xếp
+    const sortStudents = (data) => {
+        const sortedData = [...data].sort((a, b) => {
+            const fieldValueA = a[sortField].toLowerCase();
+            const fieldValueB = b[sortField].toLowerCase();
 
+            if (sortOrder === 'asc') {
+                return fieldValueA.localeCompare(fieldValueB);
+            } else {
+                return fieldValueB.localeCompare(fieldValueA);
+            }
+        });
+
+        return sortedData;
+    };
+    console.log(sortStudents(students))
     const pageCount = Math.ceil(students.length / 10); // Giả sử hiển thị 10 sinh viên mỗi trang
 
     // Lọc danh sách sinh viên để hiển thị trang hiện tại
@@ -41,21 +56,38 @@ function QuanLiSV() {
         }
 
     };
-
+    const [dataDetail, setDatadt] = useState({})
+    const handleDetal = async (msv) => {
+        setShow(true);
+        try {
+            const dt = await getSvbyMsv(msv);
+            setDatadt(dt);
+        }
+        catch {
+            alert("LỖi lấy api sv")
+        }
+    }
+    const handleAdd = () => {
+        setDatadt({});
+        setShow(true)
+    }
     useEffect(() => {
         const fetchData = async () => {
             try {
                 let response = await getStudent(search);
-                // if (search !== '') {
-                //     response = await getStudentByName(search);
-                // }
-                setStudents(response);
+                const sortedData = sortStudents(response);
+                setStudents(sortedData);
             } catch (error) {
                 console.error('Lỗi lấy dữ liệu', error);
             }
         };
-        fetchData()
-    }, [refetch, search]);
+        fetchData();
+    }, [refetch, search, sortOrder, sortField]);
+
+    const handleSort = (columnName) => {
+        setSortField(columnName);
+        setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+    };
 
     return (
         <div className={cx('wrapper')}>
@@ -67,16 +99,7 @@ function QuanLiSV() {
                     onChange={(e) => setSearch(e.target.value)}
                     placeholder="Tìm kiếm"
                 />
-                {/* <select
-                    className={cx('btn-chon')}
-                    value={selectedClass}
-                    onChange={(e) => setSelectedClass(e.target.value)}
-                >
-                    <option value="">Chọn lớp</option>
-                    <option value="CNTT1">CNTT1</option>
-                    <option value="CNTT2">CNTT2</option>
-                </select> */}
-                <Button onClick={() => setShow(true)} className={cx('btn-them')}>
+                <Button onClick={handleAdd} className={cx('btn-them')}>
                     Thêm sinh viên
                 </Button>
             </div>
@@ -86,9 +109,11 @@ function QuanLiSV() {
                     <thead>
                         <tr>
                             <th>STT</th>
-                            <th>Mã sinh viên</th>
+                            <th onClick={() => handleSort('email')} style={{ cursor: 'pointer' }}>Mã sinh viên</th>
                             <th>Họ đệm</th>
-                            <th>Tên</th>
+                            <th onClick={() => handleSort('lastName')} style={{ cursor: 'pointer' }}>
+                                Tên
+                            </th>
                             <th>Lớp</th>
                             <th>Hành động</th>
                         </tr>
@@ -101,10 +126,8 @@ function QuanLiSV() {
                                 <td>{student.firstName}</td>
                                 <td>{student.lastName}</td>
                                 <td>{student.class}</td>
-                                {/* <td>{(student.sex = 1 ? 'Nam' : 'Nữ')}</td> */}
-                                {/* <td>{student.GPA}</td> */}
                                 <td>
-                                    <Button>Chi tiết</Button>
+                                    <Button onClick={() => handleDetal(student.email)}>Chi tiết</Button>
                                     <Button onClick={() => handleDelete(student.id)} className={cx('delete')}>
                                         Xóa
                                     </Button>
@@ -124,13 +147,14 @@ function QuanLiSV() {
                     onPageChange={handlePageClick}
                     containerClassName={cx('pagination')}
                     subContainerClassName={cx('pages pagination')}
-                    activeClassName={'active'}
+                    activeClassName={cx('active')}
                     previousClassName={cx('custom-previous')} // Add a custom class for the previous button
                     nextClassName={cx('custom-next')}
                 />
             </div>
 
-            {show && <SinhVienModal show={show} handleClose={handleClose} />}
+            {show && <SinhVienModal show={show} data={dataDetail} handleClose={handleClose} />}
+            {/* {show && <SinhVienModal show={show} handleClose={handleClose} />} */}
         </div>
     );
 }
