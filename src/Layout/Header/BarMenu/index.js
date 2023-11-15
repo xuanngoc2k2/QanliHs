@@ -24,7 +24,8 @@ function BarMenu({ data }) {
                         <div
                             onClick={async () => {
                                 await logout();
-                                navigate('/login');
+                                // eslint-disable-next-line no-restricted-globals
+                                location.href = '/login';
                             }}
                         >
                             Đăng Xuất
