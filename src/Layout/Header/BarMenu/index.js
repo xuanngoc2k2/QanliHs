@@ -28,7 +28,7 @@ function BarMenu({ data }) {
                                 location.href = '/login';
                             }}
                         >
-                            Đăng Xuất
+                            Đăng xuất
                         </div>
                     )}
                     {!cookie.user && <a href="/">Đăng nhập</a>}

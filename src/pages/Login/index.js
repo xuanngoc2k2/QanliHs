@@ -44,11 +44,16 @@ function Login() {
     };
 
     return (
-        <Div className="container mt-4">
+        <Div className="container">
+            <div style={{
+                fontSize: 25,
+                color: 'green',
+                fontWeight: 'bold'
+            }}>ĐĂNG NHẬP</div>
             <form>
-                <div className="form-outline mb-4 mt-4">
+                <div className="form-outline">
                     <label className="form-label mt-3" for="form2Example1">
-                        Email address
+                        Mã sinh viên
                     </label>
 
                     <input
@@ -62,7 +67,7 @@ function Login() {
 
                 <div className="form-outline mb-4">
                     <label className="form-label" for="form2Example2">
-                        Password
+                        Mật khẩu
                     </label>
                     <input
                         type="password"
@@ -73,7 +78,7 @@ function Login() {
                     />
                 </div>
 
-                <Button type="Button" onClick={handleSubmit} className="btn btn-primary btn-block mb-4">
+                <Button type="Button" onClick={handleSubmit} className="btn btn-primary btn-block">
                     Sign in
                 </Button>
             </form>
