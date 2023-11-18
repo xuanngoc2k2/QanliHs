@@ -36,6 +36,7 @@ function BangDiemHp() {
         };
         fetchData();
     }, [data, id, search, refetch]);
+
     const handleShow = () => {
         setShow(true);
     };
