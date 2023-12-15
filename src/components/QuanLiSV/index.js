@@ -15,7 +15,7 @@ function QuanLiSV() {
     const [students, setStudents] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [sortOrder, setSortOrder] = useState('asc'); // 'asc' hoặc 'desc'
-    const [sortField, setSortField] = useState('lastName'); // Trường dữ liệu sẽ được sắp xếp
+    const [sortField, setSortField] = useState('tensv'); // Trường dữ liệu sẽ được sắp xếp
     const sortStudents = (data) => {
         const sortedData = [...data].sort((a, b) => {
             const fieldValueA = a[sortField].toLowerCase();
@@ -74,7 +74,7 @@ function QuanLiSV() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                let response = await getStudent(search);
+                let response = await getStudent();
                 const sortedData = sortStudents(response);
                 setStudents(sortedData);
             } catch (error) {
@@ -110,11 +110,16 @@ function QuanLiSV() {
                         <tr>
                             <th>STT</th>
                             <th onClick={() => handleSort('email')} style={{ cursor: 'pointer' }}>Mã sinh viên</th>
-                            <th>Họ đệm</th>
                             <th onClick={() => handleSort('lastName')} style={{ cursor: 'pointer' }}>
-                                Tên
+                                Họ và tên
                             </th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
                             <th>Lớp</th>
+                            <th>Khoa</th>
+                            <th>GPA</th>
+                            <th>Email</th>
+                            <th>Sđt</th>
                             <th>Hành động</th>
                         </tr>
                     </thead>
@@ -122,10 +127,15 @@ function QuanLiSV() {
                         {displayedStudents.map((student, index) => (
                             <tr key={index}>
                                 <td>{index + 1}</td>
+                                <td>{student.masv}</td>
+                                <td>{student.tensv}</td>
+                                <td>{student.ngaysinh}</td>
+                                <td>{student.gioitinh == 1 ? 'Nam' : 'Nữ'}</td>
+                                <td>{student.lop}</td>
+                                <td>{student.khoa}</td>
+                                <td>{student.gpa}</td>
                                 <td>{student.email}</td>
-                                <td>{student.firstName}</td>
-                                <td>{student.lastName}</td>
-                                <td>{student.class}</td>
+                                <td>{student.sdt}</td>
                                 <td>
                                     <Button onClick={() => handleDetal(student.email)}>Chi tiết</Button>
                                     <Button onClick={() => handleDelete(student.id)} className={cx('delete')}>

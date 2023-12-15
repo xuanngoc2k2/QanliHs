@@ -3,6 +3,8 @@ import classNames from 'classnames/bind';
 import TopHeader from './TopHeader';
 import BarMenu from './BarMenu';
 import { useCookies } from 'react-cookie';
+import { getInfo } from '~/apis';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 let dataTopHeader = [
@@ -11,6 +13,7 @@ let dataTopHeader = [
 
 function Header({ title }) {
     const [cookie, setCookie, removeCookie] = useCookies(['user']);
+    const [name, setName] = useState('');
     if (cookie.user) {
         if (cookie.user.role == 1) {
             dataTopHeader = [
@@ -19,7 +22,9 @@ function Header({ title }) {
             ]
         }
         else {
-            const name = cookie.user.firstName + ' ' + cookie.user.lastName;
+            getInfo(cookie.user.masv).then((data) => {
+                setName(data.tensv);
+            })
             dataTopHeader = [
                 name,
                 'Vai trò: Sinh viên'

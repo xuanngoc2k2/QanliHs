@@ -1,36 +1,32 @@
 import axios from 'axios';
 
 const backendUrl = 'http://localhost:3333';
-// http://localhost:3030/user/login
 
-// export const logout = async () => {
-//     const { data } = await axios.get(backendUrl + '/user/logout', {
-//         withCredentials: true,
-//     });
-//     return data;
-// };
-export const login = async (email, password) => {
+export const login = async (masv, password) => {
     const { data } = await axios.post(
-        backendUrl + '/user/login',
-        { email, password },
+        backendUrl + '/taikhoan/login',
+        { masv, password },
         {
             withCredentials: true,
         },
     );
+    console.log(data);
     if (data) return data;
     else return null;
 };
 
 export const logout = async () => {
-    const { data } = await axios.get(backendUrl + '/user/logout', {
+    const { data } = await axios.get(backendUrl + '/taikhoan/logout', {
         withCredentials: true,
     });
     return data;
 };
-export const getStudent = async (search) => {
-    const { data } = await axios.get(backendUrl + `/user?search=${search}`);
+export const getStudent = async () => {
+    const { data } = await axios.get(backendUrl + `/sinhvien`);
+    console.log(data);
     return data;
 };
+
 // export const getStudentByName = async (name) => {
 //     const { data } = await axios.get(backendUrl + '/user/' + name);
 //     return data;
@@ -119,6 +115,11 @@ export const gvUpdateDiemSv = async (classId, dataDiem) => {
     // const { data } = await axios.post(backendUrl + '/score/course/' + classId, dataDiem)
     return true;
 };
+export const getInfo = async (masv) => {
+    const { data } = await axios.get(backendUrl + '/sinhvien/' + masv);
+    return data;
+};
+
 export const svGetDiem = async (id) => {
     const { data } = await axios.get(backendUrl + '/score/student/' + id);
     return data;

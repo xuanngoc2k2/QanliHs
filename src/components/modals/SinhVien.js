@@ -65,7 +65,7 @@ export default function SinhVienModal({ data, show, handleClose }) {
                         <Form>
                             <div className='row'>
                                 <Form.Group className="mb-3 col-7">
-                                    <Form.Label>Họ đệm</Form.Label>
+                                    <Form.Label>Họ và tên</Form.Label>
                                     <Form.Control disabled={Object.keys(data).length === 0 ? false : true} value={hodem} onChange={(e) => setHodem(e.target.value)} type="text" />
                                 </Form.Group>
                                 <Form.Group className="mb-3 col-5" controlId="email">

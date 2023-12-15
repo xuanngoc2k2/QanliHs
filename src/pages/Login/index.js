@@ -28,14 +28,6 @@ function Login() {
             if (!user) {
                 alert('Email hoặc mật khẩu không đúng');
             }
-            // } catch
-            // if (user) {
-            //     setCookie('user', user);
-            //     if (user.role === 1) navigate('/admin/qlsv');
-            //     if (user.role === 2) navigate('/');
-            // } else {
-            //     alert('Email hoặc mật khẩu không đúng');
-            // }
         } catch (error) {
             alert('Server Error');
         }

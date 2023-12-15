@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDiemKi, getKi, svGetDiem } from '~/apis';
 import classNames from 'classnames/bind';
-import styles from './custom.module.scss';
 
 const cx = classNames.bind();
 function BangDiemSV({ data, userInfo }) {
@@ -32,19 +31,15 @@ function BangDiemSV({ data, userInfo }) {
     const handleSemesterChange = (e) => {
         const selectedValue = e.target.value;
         setSelectedSemester(selectedValue);
-        // console.log(selectedSemester);
         try {
             getDiemKi(userInfo.id, selectedValue).then((value) => {
-                // console.log(value);
                 setdateL(value)
             });
         }
         catch {
-            alert("lỗi lcoj");
+            alert("lỗi lọc");
         }
-        // const datal =
     };
-    // console.log(dataL);
     return (
         <div>
             <div className='d-flex justify-content-between mt-5 col col-8' style={{
@@ -54,15 +49,19 @@ function BangDiemSV({ data, userInfo }) {
                 <div>MSV: <span style={{
                     marginLeft: 10,
                     color: 'black'
-                }}>{userInfo.email}</span></div>
+                }}>{userInfo.masv}</span></div>
                 <div>Họ tên: <span style={{
                     marginLeft: 10,
                     color: 'black'
-                }}>{userInfo.firstName + ' ' + userInfo.lastName}</span></div>
+                }}>{userInfo.tensv}</span></div>
                 <div>Lớp: <span style={{
                     marginLeft: 10,
                     color: 'black'
-                }}>{userInfo.class}</span></div>
+                }}>{userInfo.lop}</span></div>
+                <div>Khoa: <span style={{
+                    marginLeft: 10,
+                    color: 'black'
+                }}>{userInfo.khoa}</span></div>
                 <div className='d-flex'>
                     <label htmlFor='semesterSelect'>Kì học:</label>
                     <select
