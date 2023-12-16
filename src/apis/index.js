@@ -21,11 +21,21 @@ export const logout = async () => {
     });
     return data;
 };
+
+export const getAllKhoa = async () => {
+    const { data } = await axios.get(backendUrl + '/khoa');
+    return data
+}
+
+export const getAllLopbyKhoa = async (makhoa) => {
+    const { data } = await axios.get(backendUrl + '/lop/' + makhoa);
+    return data
+}
 export const getStudent = async () => {
     const { data } = await axios.get(backendUrl + `/sinhvien`);
-    console.log(data);
     return data;
 };
+
 
 // export const getStudentByName = async (name) => {
 //     const { data } = await axios.get(backendUrl + '/user/' + name);
@@ -42,7 +52,7 @@ export const getSvbyMsv = async (msv) => {
 };
 
 export const createSv = async (sv) => {
-    const { data } = await axios.post(backendUrl + '/user/sinh-vien', sv);
+    const { data } = await axios.post(backendUrl + '/sinhvien', sv);
     return data;
 };
 
@@ -83,7 +93,7 @@ export const gvThongKe = async (id) => {
 };
 
 export const gvGetListCourse = async (search) => {
-    const { data } = await axios.get(backendUrl + `/course?search=${search}`);
+    const { data } = await axios.get(backendUrl + `/hocphan`);
     return data;
 };
 

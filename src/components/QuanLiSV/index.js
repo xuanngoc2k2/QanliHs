@@ -30,7 +30,6 @@ function QuanLiSV() {
 
         return sortedData;
     };
-    console.log(sortStudents(students))
     const pageCount = Math.ceil(students.length / 10); // Giả sử hiển thị 10 sinh viên mỗi trang
 
     // Lọc danh sách sinh viên để hiển thị trang hiện tại

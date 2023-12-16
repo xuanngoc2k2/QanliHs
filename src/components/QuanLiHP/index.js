@@ -45,7 +45,7 @@ function QuanLiHP() {
                         placeholder="Tìm kiếm"
                     />
                     <Button variant="primary" className="ms-5" onClick={handleShow}>
-                        Thêm khóa học
+                        Thêm học phần
                     </Button>
                 </div>
 

@@ -8532,10 +8532,10 @@
     "hoist-non-react-statics" "^3.3.2"
     "universal-cookie" "^6.0.0"
 
-"react-datepicker@^4.21.0":
-  "integrity" "sha512-z0DtuRrKMz9i7dcTusW29VacbM9pn08g1yw0cG+Y5GpodJDxSWv7zUMxl3IwKN9Ap/AMphiepvmT5P+iNCgEiA=="
-  "resolved" "https://registry.npmjs.org/react-datepicker/-/react-datepicker-4.21.0.tgz"
-  "version" "4.21.0"
+"react-datepicker@^4.24.0":
+  "integrity" "sha512-2QUC2pP+x4v3Jp06gnFllxKsJR0yoT/K6y86ItxEsveTXUpsx+NBkChWXjU0JsGx/PL8EQnsxN0wHl4zdA1m/g=="
+  "resolved" "https://registry.npmjs.org/react-datepicker/-/react-datepicker-4.24.0.tgz"
+  "version" "4.24.0"
   dependencies:
     "@popperjs/core" "^2.11.8"
     "classnames" "^2.2.6"

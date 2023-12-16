@@ -41,19 +41,20 @@ function HocPhan({ data, reload }) {
         <div className="card col col-xl-3 col-6 mx-4 my-4">
             <img src="https://img.lovepik.com/photo/40015/9423.jpg_wh860.jpg" className="card-img-top" alt="..." />
             <div className="card-body">
-                <h5 className="card-title">{data.TenMH}</h5>
+                <h5 className="card-title">{data.tenmonhoc}</h5>
                 <div className="d-flex justify-content-between">
-                    <p className="card-text">Tên MH: {data.name}</p>
-                    <p className="card-text ">Số tín chỉ: {data.so_tc}</p>
+                    <p className="card-text">Tên học phần: {data.tenmonhoc}</p>
+                    <p className="card-text">Thứ tự: {data.thutu}</p>
                 </div>
                 <div className="d-flex justify-content-between">
-                    <p className="card-text">Kì học: {data.hocKi}</p>
-                    <p className="card-text">Năm học: {data.year}</p>
+                    <p className="card-text ">Số tín chỉ: {data.sotc}</p>
+                    <p className="card-text">Kì học: {data.hocki}</p>
+                    <p className="card-text">Năm học: {data.nam}</p>
                 </div>
-                <p className="card-text">Phòng học: {data.address}</p>
-                <p className="card-text">Giáo viên phụ trách: {data.gv}</p>
-                <p className="card-text">Thời gian học: {data.date} tiết {data.from} - {data.to}</p>
-                <p className="card-text">Tổng số: {data.totalSV} sinh viên</p>
+                <p className="card-text">Phòng học: {data.diadiemhoc}</p>
+                <p className="card-text">Giáo viên phụ trách: {data.gvphutrach}</p>
+                {/* <p className="card-text">Thời gian học: {data.date} tiết {data.from} - {data.to}</p> */}
+                <p className="card-text">Tổng số: {data.soluong} sinh viên</p>
                 <div className="d-flex justify-content-between">
                     <button onClick={() => { handleClick(data.id) }} className="btn btn-primary">
                         Xem
