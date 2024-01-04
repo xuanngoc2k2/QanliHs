@@ -1,4 +1,4 @@
-import { gvDeleteCourse, gvGetCourse, gvThongKe } from '~/apis';
+import { gvDeleteCourse, gvGetCourse, gvThongKe, updateSv } from '~/apis';
 import UpdateCourseModal from '../modals/UpdateCourse';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -38,12 +38,12 @@ function HocPhan({ data, reload }) {
         navigate('/admin/score/' + id);
     }
     return (
-        <div className="card col col-xl-3 col-6 mx-4 my-4">
+        <div className="card col col-xl-3 col-6 mx-4 my-4" style={{ minWidth: 420 }}>
             <img src="https://img.lovepik.com/photo/40015/9423.jpg_wh860.jpg" className="card-img-top" alt="..." />
             <div className="card-body">
-                <h5 className="card-title">{data.tenmonhoc}</h5>
+                <h5 className="card-title" style={{ textTransform: 'uppercase' }}>{data.tenmonhoc}</h5>
                 <div className="d-flex justify-content-between">
-                    <p className="card-text">Tên học phần: {data.tenmonhoc}</p>
+                    <p className="card-text">Tên học phần: {data.tenhp}</p>
                     <p className="card-text">Thứ tự: {data.thutu}</p>
                 </div>
                 <div className="d-flex justify-content-between">
@@ -51,7 +51,11 @@ function HocPhan({ data, reload }) {
                     <p className="card-text">Kì học: {data.hocki}</p>
                     <p className="card-text">Năm học: {data.nam}</p>
                 </div>
-                <p className="card-text">Phòng học: {data.diadiemhoc}</p>
+                <div className="d-flex justify-content-between">
+                    <p className="card-text">Phòng học: {data.diadiemhoc}</p>
+                    <p className="card-text">Từ tiết: {data.tutiet}</p>
+                    <p className="card-text">Đến tiết: {data.dentiet}</p>
+                </div>
                 <p className="card-text">Giáo viên phụ trách: {data.gvphutrach}</p>
                 {/* <p className="card-text">Thời gian học: {data.date} tiết {data.from} - {data.to}</p> */}
                 <p className="card-text">Tổng số: {data.soluong} sinh viên</p>
@@ -79,7 +83,8 @@ function HocPhan({ data, reload }) {
                             const shouldDelete = window.confirm('Bạn có chắc chắn muốn xóa môn học này?');
                             if (shouldDelete) {
                                 try {
-                                    await gvDeleteCourse(data.id);
+                                    await gvDeleteCourse(data.mahocphan, data.thutu);
+                                    console.log(data.mahocphan, data.thutu);
                                     reload();
                                 } catch {
                                     alert('Lỗi xóa');

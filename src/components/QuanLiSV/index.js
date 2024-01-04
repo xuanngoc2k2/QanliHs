@@ -90,7 +90,15 @@ function QuanLiSV() {
 
     return (
         <div className={cx('wrapper')}>
-            <h1 className={cx('title')}>Danh sách sinh viên</h1>
+            <div className="col col-5" style={{
+                color: 'green',
+                textTransform: 'uppercase'
+            }}>
+                <h1 style={{
+                    fontSize: 30,
+                    fontWeight: 'bold',
+                }}>Danh sách sinh viên</h1>
+            </div>
             <div className={cx('info-lop')}>
                 <Form.Control style={{ width: 400 }}
                     type="text"
@@ -137,7 +145,7 @@ function QuanLiSV() {
                                 <td>{student.sdt}</td>
                                 <td>
                                     <Button onClick={() => handleDetal(student.email)}>Chi tiết</Button>
-                                    <Button onClick={() => handleDelete(student.id)} className={cx('delete')}>
+                                    <Button onClick={() => handleDelete(student.masv)} className={cx('delete')}>
                                         Xóa
                                     </Button>
                                 </td>

@@ -38,16 +38,17 @@ export default function SinhVienModal({ data, show, handleClose }) {
     }, [data])
 
     const onSubmit = async () => {
+        const gpaWithoutCommas = gpa.replace(/,/g, '.');
         if (!tensv ||
             !lop ||
             !ngaysinh ||
             !masv ||
             !khoa ||
-            gpa ||
-            sdt ||
-            email ||
             !gioitinh) {
-            alert(' Vui long nhap du thong tin');
+            alert('Vui lòng nhập đủ thông tin');
+            return;
+        } else if (isNaN(parseFloat(gpaWithoutCommas))) {
+            alert('GPA phải là kiểu số thực');
             return;
         }
         try {
@@ -57,26 +58,16 @@ export default function SinhVienModal({ data, show, handleClose }) {
                 ngaysinh: format(ngaysinh, 'yyyy/MM/dd'),
                 masv,
                 khoa,
-                gpa,
+                gpa: gpaWithoutCommas,
                 sdt,
                 email,
                 gioitinh
             };
-            // if (Object.keys(data).length !== 0) {
-            //     await updateSv(data.id, sv);
-            //     alert("Update thành công")
-            // }
-            // else {
-            // if (Object.keys(getInfo(masv)).length !== 0) {
-            //     alert("Mã sinh viên đã tồn tại");
-            // }
-            // else {
             console.log(sv);
             await createSv(sv);
-            // }
-            // }
+            alert("Thêm thành công")
         } catch (error) {
-            alert(error);
+            alert('Đã tồn tại sinh viên này');
         }
         handleClose();
     };

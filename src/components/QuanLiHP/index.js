@@ -33,8 +33,14 @@ function QuanLiHP() {
 
     return (
         <div>
-            <div className="col col-5">
-                <h1>Danh sách Học Phần</h1>
+            <div className="col col-5" style={{
+                color: 'green',
+                textTransform: 'uppercase'
+            }}>
+                <h1 style={{
+                    fontSize: 30,
+                    fontWeight: 'bold',
+                }}>Danh sách học phần</h1>
             </div>
             <div classNames="d-flex align-item-center">
                 <div className="ms-4 col col-6 d-flex">

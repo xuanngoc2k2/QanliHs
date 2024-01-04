@@ -27,6 +27,10 @@ export const getAllKhoa = async () => {
     return data
 }
 
+export const getAllMon = async () => {
+    const { data } = await axios.get(backendUrl + '/mon')
+    return data;
+}
 export const getAllLopbyKhoa = async (makhoa) => {
     const { data } = await axios.get(backendUrl + '/lop/' + makhoa);
     return data
@@ -61,7 +65,7 @@ export const updateSv = async (id, sv) => {
     return data
 }
 export const deleteStudent = async (id) => {
-    await axios.delete(backendUrl + '/user/' + id);
+    await axios.delete(backendUrl + '/sinhvien/' + id);
 };
 
 export const gvImportDiem = async (data) => {
@@ -73,12 +77,12 @@ export const gvUpdateDiem = async (data, id) => {
 };
 
 export const gvCreateCourse = async (course) => {
-    return await axios.post(backendUrl + '/course', course);
+    return await axios.post(backendUrl + '/hocphan', course);
     // console.log(course);
 };
 
-export const gvDeleteCourse = async (id) => {
-    return await axios.delete(backendUrl + '/course/' + id);
+export const gvDeleteCourse = async (id, thutu) => {
+    return await axios.delete(backendUrl + `/hocphan/${id}/${thutu}`);
 };
 
 export const gvUpdateCourse = async (course, id) => {
@@ -94,6 +98,7 @@ export const gvThongKe = async (id) => {
 
 export const gvGetListCourse = async (search) => {
     const { data } = await axios.get(backendUrl + `/hocphan`);
+    // console.log(data);
     return data;
 };
 
